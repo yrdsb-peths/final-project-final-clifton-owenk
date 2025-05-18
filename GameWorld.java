@@ -1,21 +1,21 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class GameWorld here.
+ * GameWorld is the place where the game is played
+ * This game is meant to be a mobile game, so world size set to phone size (veticle)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kung 
+ * @version May - June 2025
  */
 public class GameWorld extends World
 {
 
     /**
      * Constructor for objects of class GameWorld.
-     * 
+     * Set the world size to 360 x 640 (phone verticle size)
      */
     public GameWorld()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(360, 640, 1); 
     }
 }
