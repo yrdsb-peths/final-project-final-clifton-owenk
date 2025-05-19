@@ -9,7 +9,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class GameWorld extends World
 {
-
+    private int spawnTimer = 0;
+    private int timePassed = 0;
+    private boolean bossSpawned = false;
+    
     /**
      * Constructor for objects of class GameWorld.
      * Set the world size to 360 x 640 (phone verticle size)
@@ -20,4 +23,51 @@ public class GameWorld extends World
         Jet jet = new Jet(); //Create a Jet object
         addObject(jet, getWidth()/2, getHeight()/2 + 80); //position jet in centre, slightly lower vertically
     }
+    
+    /**
+     * The act method
+     * spawn enimies, and a mini-boss at the end
+     */
+    public void act()
+    {
+        spawnTimer++;
+        timePassed++;
+        
+        if(spawnTimer >= 60 && !bossSpawned)
+        {
+            spawnDrone();
+            spawnTimer = 0;
+        }
+        
+        if(timePassed >= 1800 && !bossSpawned)
+        {
+            spawnMiniBoss();
+            bossSpawned = true;
+        }
+    }
+    
+    public void spawnDrone()
+    {
+        int randomX = Greenfoot.getRandomNumber(getWidth()); // random drone spawn point x axis
+        int randomType = Greenfoot.getRandomNumber(3); // random between red, purple, green drones
+        
+        if(randomType == 0)
+        {
+            addObject(new DroneRed(), randomX, 0);
+        }
+        else if(randomType ==1)
+        {
+            addObject(new DroneGreen(), randomX, 0);
+        }
+        else
+        {
+            addObject(new DronePurple(), randomX, 0);
+        }
+    }
+    
+    public void spawnMiniBoss()
+    {
+        addObject(new MiniBoss(), getWidth()/ 2, 0);
+    }
 }
+

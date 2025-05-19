@@ -15,9 +15,10 @@ public class DroneRed extends BasicEnemy
     public DroneRed()
     {
         setImage("drone_red.png");
+        getImage().scale(60,60); // Adjest drone size
     }
     public void act()
     {
-        
+        super.act();
     }
 }
