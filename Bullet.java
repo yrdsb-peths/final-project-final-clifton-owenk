@@ -1,30 +1,27 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;
 
 /**
- * Write a description of class Bullet here.
- * 
- * @author Kung
- * @version (a version number or a date)
+ * Bullet class for the jet's automatic shooting.
+ * The bullet travels upward and disappears when off-screen.
  */
 public class Bullet extends Actor
 {
-    public int speed = 10; 
-    
-    public Bullet()
+    private int speed = 10;  // Speed ofthe bullet 
+
+    public Bullet() 
     {
         GreenfootImage image = new GreenfootImage("jet_bullet.png"); 
-        image.scale(20, 40); //bullet size
-        setImage(image); 
+        image.scale(20, 40);  // bullet size
+        setImage(image);     
     }
+
     public void act()
     {
-        // Move bullet up
-        setLocation(getX(), getY() - speed);
+        setLocation(getX(), getY() - speed);  // Move the bullet up
         
-        //Remove bullet if it goes to the edge of screen
-        if(isAtEdge())
+        if (isAtEdge()) 
         {
-            getWorld().removeObject(this);
+            getWorld().removeObject(this); // Remove bullet if touches the edge of screen
         }
     }
 }

@@ -1,70 +1,75 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Jet here.
- * 
- * @author Kung
- * @version (a version number or a date)
+ * The Jet class is an object that player is controlling in the game
+ * The jet can move up, down, left, and right using the arrow keys.
  */
 public class Jet extends Actor
 {
-    private int autoShootTimer =0; //space between each bullet
+    private int autoShootTimer = 0;  // Countdown to control the gap between bullets
+    
     /**
-     * Constructor: jet object
+     * Constructor: Sets the image of the Jet to the provided jet.png file.
      */
     public Jet()
     {
-        GreenfootImage image = new GreenfootImage("jet.png"); //load image
-        image.scale(100,100); //make jet size 100x100
-        setImage(image);  //apply the size to the jet
+        GreenfootImage image = new GreenfootImage("jet.png"); // Load the image
+        image.scale(100, 100); // Resize the image to 100x100 
+        setImage(image); // Apply the resized image to Jet
     }
-    
+
     public void act()
     {
         moveWithKeys(); 
-        autoShoot(); //Automatically shoots bullets at fixed rate
+        autoShoot(); // automatically shoots bullet at fix rate
     }
     
     /**
-     * player control the jet by using up down left right keys
+     * Checks which arrow keys are being pressed
+     * Jet moves in that direction
      */
     public void moveWithKeys()
     {
-        if(Greenfoot.isKeyDown("up"))
+        //Move the jet up if the "up" key is pressed
+        if (Greenfoot.isKeyDown("up")) 
         {
-            setLocation(getX(), getY()-5);
+            setLocation(getX(), getY() - 5);
         }
         
+        // Move the jet down if the "down" key is pressed
         if (Greenfoot.isKeyDown("down")) 
         {
             setLocation(getX(), getY() + 5);
         }
 
+        // Move the jet left if the "left" key is pressed
         if (Greenfoot.isKeyDown("left")) 
         {
             setLocation(getX() - 5, getY());
         }
-        
+
+        // Move the jet right if the "right" key is pressed
         if (Greenfoot.isKeyDown("right")) 
         {
             setLocation(getX() + 5, getY());
         }
     }
+    
     /**
-     * The position of the bullet, and the rate it shoot
+    * Automatically shoot bullets every few frames.
     */
     public void autoShoot()
     {
-        if(autoShootTimer==0)
+        if (autoShootTimer == 0) 
         {
-            Bullet bullet = new Bullet();  // Create a new bullet bullet
+            Bullet bullet = new Bullet();  // Create a new bullet
             getWorld().addObject(bullet, getX(), getY() - 50);  // bullet position above jet
-            autoShootTimer = 20; // Delay between shots 20 frames betwen
+            autoShootTimer = 20;  // Delay between shots 20 frames (3 per second)
         }
-        
-        if(autoShootTimer>0)
+
+        if (autoShootTimer > 0) 
         {
-            autoShootTimer--; //start 20 when hits 0 shoot again
+            autoShootTimer--; // count down 20 frames
         }
     }
 }
