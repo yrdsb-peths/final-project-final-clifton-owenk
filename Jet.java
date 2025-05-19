@@ -8,8 +8,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Jet extends Actor
 {
+    private int autoShootTimer =0; //space between each bullet
     /**
-     * Constructor: sets the image of the jet to "jet.png"
+     * Constructor: jet object
      */
     public Jet()
     {
@@ -21,6 +22,7 @@ public class Jet extends Actor
     public void act()
     {
         moveWithKeys(); 
+        autoShoot(); //Automatically shoots bullets at fixed rate
     }
     
     /**
@@ -46,6 +48,23 @@ public class Jet extends Actor
         if (Greenfoot.isKeyDown("right")) 
         {
             setLocation(getX() + 5, getY());
+        }
+    }
+    /**
+     * The position of the bullet, and the rate it shoot
+    */
+    public void autoShoot()
+    {
+        if(autoShootTimer==0)
+        {
+            Bullet bullet = new Bullet();  // Create a new bullet bullet
+            getWorld().addObject(bullet, getX(), getY() - 50);  // bullet position above jet
+            autoShootTimer = 20; // Delay between shots 20 frames betwen
+        }
+        
+        if(autoShootTimer>0)
+        {
+            autoShootTimer--; //start 20 when hits 0 shoot again
         }
     }
 }
