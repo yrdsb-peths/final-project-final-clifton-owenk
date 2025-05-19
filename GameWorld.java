@@ -16,6 +16,9 @@ public class GameWorld extends World
      */
     public GameWorld()
     {    
-        super(360, 640, 1); 
+        super(400, 750, 1); //Create a world size 360 x 640
+        Jet jet = new Jet(); // Create a new Jet Object
+        
+        addObject(jet, getWidth()/2, getHeight()/2 +80); // jet initial position, centere slightly down
     }
 }
