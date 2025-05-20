@@ -34,25 +34,25 @@ public class Jet extends Actor
     public void moveWithKeys()
     {
         //Move the jet up if the "up" key is pressed
-        if (Greenfoot.isKeyDown("up")) 
+        if (Greenfoot.isKeyDown("w")) 
         {
             setLocation(getX(), getY() - 5);
         }
         
         // Move the jet down if the "down" key is pressed
-        if (Greenfoot.isKeyDown("down")) 
+        if (Greenfoot.isKeyDown("s")) 
         {
             setLocation(getX(), getY() + 5);
         }
 
         // Move the jet left if the "left" key is pressed
-        if (Greenfoot.isKeyDown("left")) 
+        if (Greenfoot.isKeyDown("d")) 
         {
             setLocation(getX() - 5, getY());
         }
 
         // Move the jet right if the "right" key is pressed
-        if (Greenfoot.isKeyDown("right")) 
+        if (Greenfoot.isKeyDown("a")) 
         {
             setLocation(getX() + 5, getY());
         }
