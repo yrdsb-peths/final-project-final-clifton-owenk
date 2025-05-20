@@ -6,22 +6,32 @@ import greenfoot.*;
  */
 public class Bullet extends Actor
 {
-    private int speed = 10;  // Speed ofthe bullet 
+    private int speed = 10;
 
     public Bullet() 
     {
         GreenfootImage image = new GreenfootImage("jet_bullet.png"); 
-        image.scale(20, 40);  // bullet size
-        setImage(image);     
+        image.scale(20, 40);
+        setImage(image);
     }
 
     public void act()
     {
-        setLocation(getX(), getY() - speed);  // Move the bullet up
-        
+        setLocation(getX(), getY() - speed);
+
+        // Check if bullet hits a drone
+        BasicEnemy enemy = (BasicEnemy)getOneIntersectingObject(BasicEnemy.class);
+        if (enemy != null)
+        {
+            enemy.takeDamage(100); // Deal 100 damage
+            getWorld().removeObject(this); // Remove bullet
+            return;
+        }
+
+        // Remove if bullet reaches edge
         if (isAtEdge()) 
         {
-            getWorld().removeObject(this); // Remove bullet if touches the edge of screen
+            getWorld().removeObject(this);
         }
     }
 }
