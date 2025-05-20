@@ -3,6 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BasicEnemy extends Actor
 {
     private int speed = 2;
+    private int health = 100; //drone health
     
     /**
      * BasicEnemy is the parent class for all first-level drone enemies.
@@ -10,11 +11,16 @@ public class BasicEnemy extends Actor
      */
     public void act()
     {
-        setLocation(getX(), getY() + speed);
-        checkCollisionWithJet();
+
         if(getWorld()== null) 
         {
             return; //Stop here if removed, and wont checkOffScreen
+        }
+        setLocation(getX(), getY() + speed);
+        checkCollisionWithJet();
+        if (getWorld() == null) 
+        {
+            return; 
         }
         checkOffScreen();
     }
@@ -42,6 +48,19 @@ public class BasicEnemy extends Actor
             }
             
             getWorld().removeObject(this); //Remove drone after contacting player(jet)
+        }
+    }
+    /**
+     * reduce health
+     * if health is 0
+     * get removed
+     */
+    public void takeDamage(int damage)
+    {
+        health = health - damage;
+        if(health <= 0)
+        {
+            getWorld().removeObject(this);
         }
     }
 }
