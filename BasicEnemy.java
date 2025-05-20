@@ -14,13 +14,13 @@ public class BasicEnemy extends Actor
 
         if(getWorld()== null) 
         {
-            return; //Stop here if removed, and wont checkOffScreen
+            return; //Stop here if removed, and wont checkCollisionWithJet
         }
         setLocation(getX(), getY() + speed);
         checkCollisionWithJet();
         if (getWorld() == null) 
         {
-            return; 
+            return; //Stop here if removed, and wont checkOffScreen
         }
         checkOffScreen();
     }

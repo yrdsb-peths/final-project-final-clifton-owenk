@@ -46,13 +46,13 @@ public class Jet extends Actor
         }
 
         // Move the jet left if the "left" key is pressed
-        if (Greenfoot.isKeyDown("d")) 
+        if (Greenfoot.isKeyDown("a")) 
         {
             setLocation(getX() - 5, getY());
         }
 
         // Move the jet right if the "right" key is pressed
-        if (Greenfoot.isKeyDown("a")) 
+        if (Greenfoot.isKeyDown("d")) 
         {
             setLocation(getX() + 5, getY());
         }
