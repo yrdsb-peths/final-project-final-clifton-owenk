@@ -7,7 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Jet extends Actor
 {
     private int autoShootTimer = 0;  // Countdown to control the gap between bullets
-    
+    private HealthBar bar;
     /**
      * Constructor: Sets the image of the Jet to the provided jet.png file.
      */
@@ -16,12 +16,15 @@ public class Jet extends Actor
         GreenfootImage image = new GreenfootImage("jet.png"); // Load the image
         image.scale(100, 100); // Resize the image to 100x100 
         setImage(image); // Apply the resized image to Jet
+        
+        bar = new HealthBar(); //add healthbar
     }
 
     public void act()
     {
         moveWithKeys(); 
         autoShoot(); // automatically shoots bullet at fix rate
+        updateHealthBarPosition();
     }
     
     /**
@@ -71,5 +74,20 @@ public class Jet extends Actor
         {
             autoShootTimer--; // count down 20 frames
         }
+    }
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(bar, getX(), getY() + 70); //Add health bar under jet
+    }
+    
+    public void updateHealthBarPosition()
+    {
+        bar.setLocation(getX(), getY() +70);
+    }
+    
+    public void takeDamage(int amount)
+    {
+        bar.loseHealth(amount);
     }
 }
