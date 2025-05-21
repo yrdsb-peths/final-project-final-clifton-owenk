@@ -88,6 +88,11 @@ public class Jet extends Actor
     
     public void takeDamage(int amount)
     {
-        bar.loseHealth(amount);
+        bar.loseHealth(amount); // lose health
+        
+        if(bar.getHealth() <= 0)
+        {
+            Greenfoot.setWorld(new GameOver()); //swithch to game over screen when health is zero
+        }
     }
 }
