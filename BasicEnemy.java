@@ -47,7 +47,9 @@ public class BasicEnemy extends Actor
                 jet.takeDamage(50); // Deal 50 damage
             }
             
+            Explosion explosion = new Explosion();
             getWorld().removeObject(this); //Remove drone after contacting player(jet)
+            
         }
     }
     /**
@@ -60,6 +62,7 @@ public class BasicEnemy extends Actor
         health = health - damage;
         if(health <= 0)
         {
+            Explosion explosion = new Explosion();
             getWorld().removeObject(this);
         }
     }
