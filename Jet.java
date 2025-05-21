@@ -92,7 +92,7 @@ public class Jet extends Actor
         
         if(bar.getHealth() <= 0)
         {
-            Greenfoot.setWorld(new GameOver()); //swithch to game over screen when health is zero
+            Greenfoot.setWorld(new Defeat()); //swithch to game over screen when health is zero
         }
     }
 }
