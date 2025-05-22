@@ -8,6 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Defeat extends World
 {
     private int timer = 0; //delay showing defeat banner timer
+    private boolean bannerShown = false;
+    private boolean wordShown = false;
     
     public Defeat()
     {    
@@ -20,9 +22,17 @@ public class Defeat extends World
         timer++;
         
         //after 30 frames show banner
-        if(timer == 30)
+        if(timer == 30 && !bannerShown)
         {
             addObject(new DefeatBanner(), getWidth()/2 + 20, getHeight()/2);  // place in middle
+            bannerShown = true;
+        }
+        
+        //after 45 frames show word
+        if(timer == 45 && !wordShown)
+        {
+            addObject(new DefeatWord(), getWidth()/2, getHeight()/2); // place in middle
+            wordShown = true; 
         }
     }
 }
