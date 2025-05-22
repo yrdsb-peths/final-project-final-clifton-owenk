@@ -41,5 +41,6 @@ public class Explosion extends Actor
     {
         // Add your action code here.
         animateExplosion();
+        Greenfoot.playSound("sounds/explosion.mp3");
     }
 }
