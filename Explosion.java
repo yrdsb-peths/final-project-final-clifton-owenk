@@ -1,11 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * Write a description of class Explosion here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
 public class Explosion extends Actor
 {
     /**
@@ -25,10 +19,22 @@ public class Explosion extends Actor
     /**
      * Animate the explosion
      */
-    int imageIndex = 0;
+    private int imageIndex = 0;
+    private int delay = 5; 
+    private int delayCounter = 0; 
+    
     public void animateExplosion(){
-        setImage(explosion[imageIndex]);
-        imageIndex = (imageIndex + 1) % explosion.length;
+        delayCounter++;
+        if(delayCounter >= delay){
+            delayCounter = 0;
+            imageIndex++;
+            
+            if(imageIndex < explosion.length){
+                setImage(explosion[imageIndex]);
+            } else {
+                getWorld().removeObject(this);
+            }
+        }
     }
     
     public void act()
