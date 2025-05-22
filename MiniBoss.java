@@ -9,13 +9,25 @@ public class MiniBoss extends Actor
     private int speedY = 2;      // Speed for moving down
     private int speedX = 2;      // Speed for moving sideways
     private boolean reachedTargetY = false; //1/3 of the screen
+    private HealthBar bar;
     
     public MiniBoss()
     {
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
+        bar = new HealthBar(2000); // Boss starts with 2000 health
     }
-
+    
+    public void addedToWorld(World world)
+    {
+        world.addObject(bar, getX(), getY() -120); // put health bar above boss
+    }
+    
+    public void updateHealthBarPostition()
+    {
+        bar.setLocation(getX(), getY() -120); // healthbar always move with miniBoss
+    }
+    
     /**
      * move downward until 1/3 of the screen height,
      * then move left and right.
@@ -56,6 +68,16 @@ public class MiniBoss extends Actor
         if (isAtEdge()) 
         {
             speedX = -speedX; //change direction
+        }
+    }
+    
+    public void takeDamage(int amount)
+    {
+        bar.loseHealth(amount);
+        if(bar.getHealth() <=0)
+        {
+            getWorld().removeObject(bar);
+            getWorld().removeObject(this);
         }
     }
 }
