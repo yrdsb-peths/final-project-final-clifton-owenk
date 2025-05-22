@@ -8,8 +8,14 @@ public class HealthBar extends Actor
     private int maxHealth =100;
     private int currentHealth =100;
     
-    public HealthBar()
+    /**
+     * constructer to customize health bar
+     * depending on what maxHealth is set 
+     */
+    public HealthBar(int maxHealth)
     {
+        this.maxHealth = maxHealth;
+        this.currentHealth = maxHealth;
         updateBar();
     }
     
@@ -18,12 +24,12 @@ public class HealthBar extends Actor
      */
     public void updateBar()
     {
-        GreenfootImage image = new GreenfootImage(50, 6);
+        GreenfootImage image = new GreenfootImage(100, 10);
         image.setColor(Color.RED);
-        image.fillRect(0, 0,50, 6);
+        image.fillRect(0, 0, 100, 10);
         image.setColor(Color.GREEN);
         int healthWidth = (int)((double) currentHealth/ maxHealth * 50);
-        image.fillRect(0, 0, healthWidth, 6);
+        image.fillRect(0, 0, healthWidth, 10);
         setImage(image);
     }
     /**
@@ -32,7 +38,7 @@ public class HealthBar extends Actor
      */
     public void loseHealth(int amount)
     {
-        currentHealth = currentHealth - amount;
+        currentHealth -= amount;
         if(currentHealth<0) 
         {
             currentHealth =0;
