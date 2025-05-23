@@ -16,7 +16,7 @@ public class MiniBoss extends Actor
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
 
-        bar = new HealthBar(20000, 300, 20); // Boss health set to 20000
+        bar = new HealthBar(20000, 200, 20); // Boss health set to 20000
     }
     
     public void addedToWorld(World world)
@@ -84,6 +84,7 @@ public class MiniBoss extends Actor
             getWorld().addObject(explosion, getX(), getY());
             getWorld().removeObject(bar);
             getWorld().removeObject(this);
+            
         }
     }
 }

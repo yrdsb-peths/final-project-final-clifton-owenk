@@ -12,6 +12,7 @@ public class GameWorld extends World
     private int spawnTimer = 0;
     private int timePassed = 0;
     private boolean bossSpawned = false;
+    public static int killCount =0; 
     
     /**
      * Constructor for objects of class GameWorld.
@@ -33,6 +34,9 @@ public class GameWorld extends World
     {
         spawnTimer++;
         timePassed++;
+        
+        //shows the kill count number at the top left
+        showText("" + killCount, 50, 30);
         
         if(spawnTimer >= 60 && !bossSpawned)
         {

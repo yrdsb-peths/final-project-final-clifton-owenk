@@ -65,6 +65,7 @@ public class BasicEnemy extends Actor
         {
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
+            GameWorld.killCount++; // add 1 to the kill counter
             getWorld().removeObject(this);
         }
     }
