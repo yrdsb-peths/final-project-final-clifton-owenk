@@ -78,6 +78,10 @@ public class MiniBoss extends Actor
         bar.loseHealth(amount);
         if(bar.getHealth() <=0)
         {
+            Greenfoot.playSound("sounds/explosion-m.mp3");
+            Greenfoot.delay(120);
+            Explosion explosion = new Explosion();
+            getWorld().addObject(explosion, getX(), getY());
             getWorld().removeObject(bar);
             getWorld().removeObject(this);
         }
