@@ -15,15 +15,17 @@ public class MiniBoss extends Actor
     {
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
-        bar = new HealthBar(2000); // Boss starts with 2000 health
+
+        bar = new HealthBar(20000, 300, 20); // Boss health set to 20000
     }
     
     public void addedToWorld(World world)
     {
         world.addObject(bar, getX(), getY() -120); // put health bar above boss
+        bar.updateBar();
     }
     
-    public void updateHealthBarPostition()
+    public void updateHealthBarPosition()
     {
         bar.setLocation(getX(), getY() -120); // healthbar always move with miniBoss
     }
