@@ -4,7 +4,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Coin extends Actor
 {
     public Coin(){
-        setImage("images/coin.png");
+        GreenfootImage image = new GreenfootImage("images/coin.png");
+        image.scale(30,30);
+        setImage(image);
     }
     
     public void act()
