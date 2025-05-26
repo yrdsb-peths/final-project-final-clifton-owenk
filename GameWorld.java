@@ -61,19 +61,20 @@ public class GameWorld extends World
     public void spawnDrone()
     {
         int randomX = Greenfoot.getRandomNumber(getWidth()); // random drone spawn point x axis
+        
         int randomType = Greenfoot.getRandomNumber(3); // random between red, purple, green drones
         
         if(randomType == 0)
         {
-            addObject(new DroneRed(), randomX, 0);
+            addObject(new DroneRed(), randomX, 80);
         }
         else if(randomType ==1)
         {
-            addObject(new DroneGreen(), randomX, 0);
+            addObject(new DroneGreen(), randomX, 80);
         }
         else
         {
-            addObject(new DronePurple(), randomX, 0);
+            addObject(new DronePurple(), randomX, 80);
         }
     }
     
