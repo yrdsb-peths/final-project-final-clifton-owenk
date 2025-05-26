@@ -16,7 +16,7 @@ public class MiniBoss extends Actor
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
 
-        bar = new HealthBar(20000, 200, 20); // Boss health set to 20000
+        bar = new HealthBar(20000, 200, 10); // Boss health set to 20000
     }
     
     public void addedToWorld(World world)
@@ -44,6 +44,7 @@ public class MiniBoss extends Actor
         {
             moveSideways();
         }
+        updateHealthBarPosition();
     }
 
     /**
@@ -79,6 +80,8 @@ public class MiniBoss extends Actor
         if(bar.getHealth() <=0)
         {
             Greenfoot.playSound("sounds/explosion-m.mp3");
+            GameWorld.money += 5000; // add money 5000 if dead
+            GameWorld.killCount++; // add one to killCount
             Greenfoot.delay(120);
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
