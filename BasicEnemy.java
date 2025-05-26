@@ -63,8 +63,12 @@ public class BasicEnemy extends Actor
         health = health - damage;
         if(health <= 0)
         {
+            Coin coin = new Coin();
+            getWorld().addObject(coin, getX(), getY());
+            
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
+            
             GameWorld.killCount++; // add 1 to the kill counter
             getWorld().removeObject(this);
         }
