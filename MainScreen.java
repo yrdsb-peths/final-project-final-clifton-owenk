@@ -22,6 +22,6 @@ public class MainScreen extends World
 
     public void act() 
     {
-
+        showText("" + GameWorld.money, 170, 120); //show current money
     }
 }
