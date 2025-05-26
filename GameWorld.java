@@ -35,6 +35,7 @@ public class GameWorld extends World
         spawnTimer++;
         timePassed++;
         
+        
         //shows the kill count number at the top left
         showText("" + killCount, 50, 30);
         
