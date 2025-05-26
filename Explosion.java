@@ -37,6 +37,10 @@ public class Explosion extends Actor
         }
     }
     
+    public void setVolume(int volume){
+        volume = 10;
+    }
+    
     public void act()
     {
         // Add your action code here.
