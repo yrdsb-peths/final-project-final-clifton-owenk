@@ -13,6 +13,7 @@ public class GameWorld extends World
     private int timePassed = 0;
     private boolean bossSpawned = false;
     public static int killCount =0; 
+    private GreenfootSound bgm;
     
     /**
      * Constructor for objects of class GameWorld.
@@ -28,6 +29,8 @@ public class GameWorld extends World
         //add killCounterBanner, at top
         addObject(new KillCounterBanner(), getWidth() / 2, 40); 
         setBackground("images/background.png");
+        bgm = new GreenfootSound("sounds/bgm1.mp3");
+        bgm.playLoop();
     }
     
     /**
@@ -77,6 +80,10 @@ public class GameWorld extends World
     public void spawnMiniBoss()
     {
         addObject(new MiniBoss(), getWidth()/ 2, 0);
+    }
+    
+    public GreenfootSound getBGM(){
+        return bgm;
     }
 }
 

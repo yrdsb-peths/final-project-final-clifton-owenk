@@ -10,6 +10,7 @@ public class MiniBoss extends Actor
     private int speedX = 2;      // Speed for moving sideways
     private boolean reachedTargetY = false; //1/3 of the screen
     private HealthBar bar;
+    private GreenfootSound bgm;
     
     public MiniBoss()
     {
@@ -78,6 +79,9 @@ public class MiniBoss extends Actor
         bar.loseHealth(amount);
         if(bar.getHealth() <=0)
         {
+            GameWorld gw = (GameWorld) getWorld();
+            gw.getBGM().stop();
+            
             Greenfoot.playSound("sounds/explosion-m.mp3");
             Greenfoot.delay(120);
             Explosion explosion = new Explosion();
@@ -86,5 +90,9 @@ public class MiniBoss extends Actor
             getWorld().removeObject(this);
             
         }
+    }
+    
+    public GreenfootSound getBGM(){
+        return bgm;
     }
 }
