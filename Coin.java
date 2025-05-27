@@ -3,6 +3,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 public class Coin extends Actor
 {
+    private int speed = 1;
+    
     public Coin(){
         GreenfootImage image = new GreenfootImage("images/coin.png");
         image.scale(30,30);
@@ -11,11 +13,9 @@ public class Coin extends Actor
     
     public void act()
     {
-        checkCollision();
-    }
-    
-    public void checkCollision(){
-        if(isTouching(Jet.class)){
+        if(!isTouching(Jet.class)){
+            setLocation(getX(), getY() + speed);
+        }else{
             getWorld().removeObject(this);
         }
     }
