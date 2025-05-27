@@ -70,7 +70,6 @@ public class BasicEnemy extends Actor
             getWorld().addObject(explosion, getX(), getY());
             
             GameWorld.killCount++; // add 1 to the kill counter
-            GameWorld.money += 1000;
             getWorld().removeObject(this);
         }
     }

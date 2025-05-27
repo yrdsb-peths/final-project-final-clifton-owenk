@@ -13,10 +13,14 @@ public class Coin extends Actor
     
     public void act()
     {
-        if(!isTouching(Jet.class)){
+        if(!isTouching(Jet.class))
+        {
             setLocation(getX(), getY() + speed);
-        }else{
+        }
+        else
+        {
             getWorld().removeObject(this);
+            GameWorld.money += 1000; // when player touches coin money +1000
         }
     }
 }
