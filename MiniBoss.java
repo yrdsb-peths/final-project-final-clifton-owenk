@@ -91,6 +91,7 @@ public class MiniBoss extends Actor
             getWorld().addObject(explosion, getX(), getY());
             getWorld().removeObject(bar);
             getWorld().removeObject(this);
+            Greenfoot.setWorld(new Victory()); // go to victory world when boss dead
             
         }
     }
