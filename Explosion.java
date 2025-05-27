@@ -22,6 +22,7 @@ public class Explosion extends Actor
     private int imageIndex = 0;
     private int delay = 5; 
     private int delayCounter = 0; 
+    private boolean soundPlayed = false;
     
     public void animateExplosion(){
         delayCounter++;
@@ -43,8 +44,10 @@ public class Explosion extends Actor
     
     public void act()
     {
-        // Add your action code here.
+        if (!soundPlayed) {
+            Greenfoot.playSound("explosion.mp3");  // no "sounds/" prefix here
+            soundPlayed = true;
+        }
         animateExplosion();
-        Greenfoot.playSound("sounds/explosion.mp3");
     }
 }
