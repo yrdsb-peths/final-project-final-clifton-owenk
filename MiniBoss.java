@@ -11,6 +11,7 @@ public class MiniBoss extends Actor
     private boolean reachedTargetY = false; //1/3 of the screen
     private HealthBar bar;
     private GreenfootSound bgm;
+    private int missileTimer =0; //times the space between each missile
     
     public MiniBoss()
     {
@@ -46,6 +47,13 @@ public class MiniBoss extends Actor
             moveSideways();
         }
         updateHealthBarPosition();
+        
+        missileTimer++;
+        if(missileTimer>= 180) //180 frames 5second each time
+        {
+            fireMissiles();
+            missileTimer =0;
+        }
     }
 
     /**
@@ -94,6 +102,22 @@ public class MiniBoss extends Actor
             Greenfoot.setWorld(new Victory()); // go to victory world when boss dead
             
         }
+    }
+    
+    public void fireMissiles()
+    {
+        if(getWorld() == null)
+        {
+            return;
+        }
+        
+        int xLeft = getX()-70; //position from left wing
+        int xRight = getY()+60; // position from right wing
+        int y = getY() + 60; //from below the boss
+        
+        getWorld().addObject(new BossMissile(), xLeft, y);
+        getWorld().addObject(new BossMissile(), xRight, y);
+        
     }
     
     public GreenfootSound getBGM(){
