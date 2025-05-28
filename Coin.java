@@ -14,6 +14,7 @@ public class Coin extends Actor
     public void act()
     {
         if (isTouching(Jet.class)) {
+            Greenfoot.playSound("sounds/coin.mp3");
             getWorld().removeObject(this);
             GameWorld.money += 1000;
         }
