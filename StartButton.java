@@ -10,7 +10,7 @@ public class StartButton extends Actor {
 
     public StartButton() 
     {
-        normalImage.scale(250, 370); //size of button
+        normalImage.scale(240, 110); //size of button
         pressedImage.scale(250, 350); 
         setImage(normalImage);
     }

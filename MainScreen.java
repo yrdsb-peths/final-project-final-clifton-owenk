@@ -17,7 +17,7 @@ public class MainScreen extends World
         setBackground(bg);
         
         // add start button, near buttom of main screen
-        addObject(new StartButton(), getWidth() / 2, getHeight() - 100); 
+        addObject(new StartButton(), getWidth() / 2, getHeight() - 110); 
     }
 
     public void act() 
