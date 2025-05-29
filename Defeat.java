@@ -15,6 +15,7 @@ public class Defeat extends World
     {    
         super(400, 750, 1);  // Same size as game screen
         setBackground("background_blur.png"); //Set the background
+        Greenfoot.playSound("sounds/defeat.mp3");
     }
     
     public void act()

@@ -13,6 +13,7 @@ public class Victory extends World
     {    
         super(400, 750, 1); 
         setBackground("background_blur.png");
+        Greenfoot.playSound("sounds/victory.mp3");
     }
     
     public void act()
