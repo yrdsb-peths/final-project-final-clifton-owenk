@@ -38,7 +38,7 @@ public class Bullet extends Actor
         }
 
         // Remove if bullet reaches edge
-        if (isAtEdge()) 
+        if (getY() <= 80) 
         {
             getWorld().removeObject(this);
         }
