@@ -80,6 +80,9 @@ public class BossMissile extends Actor
         bar.loseHealth(amount);
         if(bar.getHealth() <= 0)
         {
+            Explosion explosion = new Explosion();
+            getWorld().addObject(explosion, getX(), getY());
+            
             removeSelf(); // remove when health is 0, remove both bullet and missile
             return;
         }
