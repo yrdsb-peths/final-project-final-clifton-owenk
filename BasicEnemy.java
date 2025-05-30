@@ -23,7 +23,10 @@ public class BasicEnemy extends Actor
 
     public void act()
     {
-        if (getWorld() == null) return;
+        if (getWorld() == null) 
+        {
+            return;
+        }
 
         setLocation(getX(), getY() + speed);
 
@@ -32,18 +35,25 @@ public class BasicEnemy extends Actor
             bar.setLocation(getX(), getY() - 40); // update bar position
         }
 
-        checkCollisionWithJet();
-
-        if (getWorld() == null) return;
-
-        checkOffScreen();
-
-        // Check if hit by a bullet
-        Bullet bullet = (Bullet)getOneIntersectingObject(Bullet.class);
-        if (bullet != null && bullet.getWorld() != null)
+        if(getWorld() != null)
         {
-            getWorld().removeObject(bullet);
-            takeDamage(100); // bullet does 100
+            checkCollisionWithJet();
+        }
+
+        if (getWorld() != null) 
+        {
+            checkOffScreen();
+        }
+
+        // Only check for bullets if still in the world
+        if(getWorld() != null)
+        {
+            Bullet bullet = (Bullet)getOneIntersectingObject(Bullet.class);
+            if(bullet != null && bullet.getWorld() != null)
+            {
+                getWorld().removeObject(bullet);
+                takeDamage(100); 
+            }
         }
     }
 
@@ -96,6 +106,7 @@ public class BasicEnemy extends Actor
 
             GameWorld.killCount++;
             removeSelf();
+            return; 
         }
     }
 

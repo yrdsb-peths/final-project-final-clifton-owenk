@@ -1,14 +1,37 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * VictoryBanne is a short animation to show the player that she/he wins
+ */
+
 public class VictoryBanner extends Actor
 {
-    GreenfootImage [] victoryBanner = new GreenfootImage[21];
+    private GreenfootImage[] frames = new GreenfootImage[21]; // 21 frames 
+    private int currentFrame = 0;
+    private int animationDelay = 3; //delay 
+    private int delayCounter=0;
     
-    public VictoryBanner(){
-        for(int i = 0; i < 21; i++)
+    public VictoryBanner()
+    {
+        for(int i=0; i<frames.length; i++)
         {
-            victoryBanner[i] = new GreenfootImage("images/victoryBanner/v" + i + ".png");
+            frames[i] = new GreenfootImage("images/victoryBanner/v" + i + ".png");
+            frames[i].scale(450, 200); //size of banner
         }
-        setImage(victoryBanner[0]);
+        setImage(frames[0]);
+    }
+    
+    public void act()
+    {
+        delayCounter ++;
+        if(delayCounter >= animationDelay)
+        {
+            delayCounter = 0;
+            currentFrame ++;
+            if(currentFrame < frames.length)
+            {
+                setImage(frames[currentFrame]);
+            }
+        }
     }
 }

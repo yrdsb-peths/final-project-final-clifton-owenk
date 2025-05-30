@@ -5,9 +5,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Victory extends World
 {
-    private int timer = 0;
-    private boolean bannerShown = false;
-    private boolean wordShown = false;
+    private int frameCounter =0;
+    private boolean bannerAdded = false;
     
     public Victory()
     {    
@@ -18,20 +17,15 @@ public class Victory extends World
     
     public void act()
     {
-        timer++;
+        frameCounter++;
         
-        if(timer ==30 &&!bannerShown)
+        if(!bannerAdded && frameCounter >= 60) //delay 60 frames
         {
-            // Slightly to the right
-            addObject(new VictoryBanner(), getWidth()/2 +10, getHeight()/2);
-            bannerShown = true; 
-        }
-        
-        //after 45 frames show word
-        if(timer == 45 && !wordShown)
-        {
-            addObject(new VictoryWord(), getWidth()/2, getHeight()/2); // place in middle
-            wordShown = true; 
+            VictoryBanner banner = new VictoryBanner();
+            
+            //place banner near center, slight right
+            addObject(banner, getWidth()/2, getHeight()/2); 
+            bannerAdded = true;
         }
     }
 }
