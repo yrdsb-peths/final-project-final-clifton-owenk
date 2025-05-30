@@ -19,7 +19,7 @@ public class Victory extends World
     {
         frameCounter++;
         
-        if(!bannerAdded && frameCounter >= 60) //delay 60 frames
+        if(!bannerAdded && frameCounter >= 2) //delay 60 frames
         {
             VictoryBanner banner = new VictoryBanner();
             
