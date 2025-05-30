@@ -1,75 +1,115 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
+/**
+ * BasicEnemy is a drone that moves downward.
+ * It damages the Jet on contact, drops a coin when destroyed,
+ * and disappears when health reaches 0 or off-screen.
+ */
 public class BasicEnemy extends Actor
 {
     private int speed = 2;
-    private int health = 100; //drone health
-    
-    /**
-     * BasicEnemy is the parent class for all first-level drone enemies.
-     * They move downward and disappear when hit or pass the screen.
-     */
+    private int health = 100;
+    private HealthBar bar;
+
+    public BasicEnemy()
+    {
+        bar = new HealthBar(100, 40, 5); // 100 HP, bar width 40x5
+    }
+
+    public void addedToWorld(World world)
+    {
+        getWorld().addObject(bar, getX(), getY() - 40); // bar above drone
+    }
+
     public void act()
     {
+        if (getWorld() == null) return;
 
-        if(getWorld()== null) 
-        {
-            return; //Stop here if removed, and wont checkCollisionWithJet
-        }
         setLocation(getX(), getY() + speed);
+
+        if (bar != null && bar.getWorld() != null)
+        {
+            bar.setLocation(getX(), getY() - 40); // update bar position
+        }
+
         checkCollisionWithJet();
-        if (getWorld() == null) 
-        {
-            return; //Stop here if removed, and wont checkOffScreen
-        }
+
+        if (getWorld() == null) return;
+
         checkOffScreen();
-    }
-    
-    /**
-     * if enemy moves off the bottom of the screen
-     * get removed
-     */
-    public void checkOffScreen()
-    {
-        if(isAtEdge())
+
+        // Check if hit by a bullet
+        Bullet bullet = (Bullet)getOneIntersectingObject(Bullet.class);
+        if (bullet != null && bullet.getWorld() != null)
         {
-            getWorld().removeObject(this);
+            getWorld().removeObject(bullet);
+            takeDamage(100); // bullet does 100
         }
     }
-    
+
+    /**
+     * Check for collision with Jet and deal damage
+     */
     public void checkCollisionWithJet()
     {
-        if(isTouching(Jet.class))
+        if (isTouching(Jet.class))
         {
             Jet jet = (Jet)getOneIntersectingObject(Jet.class);
-            if(jet != null)
+            if (jet != null)
             {
                 jet.takeDamage(50); // Deal 50 damage
             }
-            
+
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
-            getWorld().removeObject(this); //Remove drone after contacting player(jet)
-            
+
+            removeSelf();
         }
     }
+
     /**
-     * reduce health
-     * if health is 0
-     * get removed
+     * Remove enemy if off the screen
+     */
+    public void checkOffScreen()
+    {
+        if (isAtEdge())
+        {
+            removeSelf();
+        }
+    }
+
+    /**
+     * Reduce health and remove if zero
      */
     public void takeDamage(int damage)
     {
-        health = health - damage;
-        if(health <= 0)
+        health -= damage;
+        bar.loseHealth(damage);
+
+        if (health <= 0)
         {
             Coin coin = new Coin();
             getWorld().addObject(coin, getX(), getY());
-            
+
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
-            
-            GameWorld.killCount++; // add 1 to the kill counter
+
+            GameWorld.killCount++;
+            removeSelf();
+        }
+    }
+
+    /**
+     * Safely remove enemy and health bar
+     */
+    public void removeSelf()
+    {
+        if (getWorld() != null)
+        {
+            if (bar != null && bar.getWorld() != null)
+            {
+                getWorld().removeObject(bar);
+            }
             getWorld().removeObject(this);
         }
     }

@@ -17,7 +17,7 @@ public class Jet extends Actor
         image.scale(100, 100); // Resize the image to 100x100 
         setImage(image); // Apply the resized image to Jet
         
-        bar = new HealthBar(100, 100, 10);//add healthbar, and set maxHealth to 100
+        bar = new HealthBar(100, 100, 5);//add healthbar, and set maxHealth to 100
     }
 
     public void act()
