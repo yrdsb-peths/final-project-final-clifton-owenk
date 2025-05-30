@@ -27,5 +27,7 @@ public class Victory extends World
             addObject(banner, getWidth()/2, getHeight()/2); 
             bannerAdded = true;
         }
+        
+        
     }
 }
