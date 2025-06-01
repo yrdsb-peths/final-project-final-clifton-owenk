@@ -7,7 +7,7 @@ import greenfoot.*;
 public class MiniBoss extends Actor 
 {
     private int speedY = 2;      // Speed for moving down
-    private int speedX = 2;      // Speed for moving sideways
+    private int speedX = 1;      // Speed for moving sideways
     private boolean reachedTargetY = false; //1/3 of the screen
     private HealthBar bar;
     private GreenfootSound bgm;
