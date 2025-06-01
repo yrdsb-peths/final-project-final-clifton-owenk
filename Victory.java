@@ -7,6 +7,7 @@ public class Victory extends World
 {
     private int frameCounter =0;
     private boolean bannerAdded = false;
+    private boolean buttonAdded = false;
     
     public Victory()
     {    
@@ -28,6 +29,8 @@ public class Victory extends World
             bannerAdded = true;
         }
         
-        
+        if(!buttonAdded && frameCounter >= 120){
+            addObject(new ReturnButton(), getWidth() / 3, getHeight() / 2 + 300);
+        }
     }
 }
