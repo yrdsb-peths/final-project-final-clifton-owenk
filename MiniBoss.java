@@ -7,7 +7,7 @@ import greenfoot.*;
 public class MiniBoss extends Actor 
 {
     private int speedY = 2;      // Speed for moving down
-    private int speedX = 2;      // Speed for moving sideways
+    private int speedX = 1;      // Speed for moving sideways
     private boolean reachedTargetY = false; //1/3 of the screen
     private HealthBar bar;
     private GreenfootSound bgm;
@@ -18,7 +18,7 @@ public class MiniBoss extends Actor
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
 
-        bar = new HealthBar(20000, 200, 5); // Boss health set to 20000
+        bar = new HealthBar(2000, 200, 5); // Boss health set to 20000
     }
     
     public void addedToWorld(World world)
