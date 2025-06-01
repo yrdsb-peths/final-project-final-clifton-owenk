@@ -32,7 +32,7 @@ public class Bullet extends Actor
         MiniBoss boss = (MiniBoss)getOneIntersectingObject(MiniBoss.class);
         if(boss!=null)
         {
-            boss.takeDamage(1000);
+            boss.takeDamage(100);
             getWorld().removeObject(this);
             return;
         }
