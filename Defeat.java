@@ -10,6 +10,7 @@ public class Defeat extends World
     private int timer = 0; //delay showing defeat banner timer
     private boolean bannerShown = false;
     private boolean wordShown = false;
+    private boolean buttonAdded = false;
     
     public Defeat()
     {    
@@ -34,6 +35,10 @@ public class Defeat extends World
         {
             addObject(new DefeatWord(), getWidth()/2, getHeight()/2); // place in middle
             wordShown = true; 
+        }
+        
+        if(!buttonAdded && timer >= 120){
+            addObject(new ReturnButton(), getWidth() / 3, getHeight() / 2 + 300);
         }
     }
 }
