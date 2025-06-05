@@ -1,8 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-    /**
-     * DefeatBanner appears in the defeat screen
-     */
+/**
+* DefeatBanner appears in the defeat screen
+* @version 2025/6/4
+*/
 public class DefeatBanner extends Actor
 {
     public DefeatBanner()

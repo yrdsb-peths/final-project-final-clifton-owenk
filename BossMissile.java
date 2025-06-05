@@ -3,17 +3,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
  * used by miniBoss damage players jet
  * It moves downward, damages jet when contact, and can be destoryed by bullet
+ * @version 2025/6/5
  */
 public class BossMissile extends Actor
 {
-    public int speed = 1; // missile speed
+    //public int speed = 1; // missile speed
     private HealthBar bar; //health bar for missile
+    
+    private static int baseSpeed = 1;
+    private static int baseHealth = 200;
+    public static int damagePower=50; //public access for testing, change back to privae after testing
     
     public BossMissile()
     {
         setImage("boss_missile.png"); 
         getImage().scale(30,60); //set size
-        bar = new HealthBar(200, 40, 5); // 200 health, health bar size 40x5
+        bar = new HealthBar(baseHealth, 40, 5); // 200 health, health bar size 40x5
     }
     
     public void addedToWorld(World world)
@@ -28,7 +33,7 @@ public class BossMissile extends Actor
             return; 
         }
         
-        setLocation(getX(), getY() + speed); //Move downward
+        setLocation(getX(), getY() + baseSpeed); //Move downward
         
         if (bar != null && bar.getWorld() != null) 
         {
@@ -41,7 +46,7 @@ public class BossMissile extends Actor
             Jet jet = (Jet) getOneIntersectingObject(Jet.class);
             if(jet != null)
             {
-                jet.takeDamage(50); //deal 50 damage to jet
+                jet.takeDamage(damagePower); //jet damaged by missel by amount of damage Power
             }
             removeSelf();
             return; //code wont run after missile removed
@@ -97,6 +102,25 @@ public class BossMissile extends Actor
                 getWorld().removeObject(bar);
             }
             getWorld().removeObject(this); //only run if still in world
+        }
+    }
+    
+    /**
+     * Update difficulty when rank points change
+     */
+    public static void adjust() 
+    {
+        if(GameWorld.victory==true) 
+        {
+            baseSpeed += 1;
+            baseHealth += 200;
+            damagePower+=50;
+        }
+        else if(GameWorld.victory == false)
+        {
+            baseSpeed = Math.max(1, baseSpeed -= 1);
+            baseHealth = Math.max(200, baseHealth -=200); 
+            damagePower=Math.max(50, damagePower -=50); 
         }
     }
 }

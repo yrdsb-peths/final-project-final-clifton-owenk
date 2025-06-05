@@ -3,6 +3,7 @@ import greenfoot.*;
 /**
  * MiniBoss is a stronger enemy that moves down to 1/3 of the screen,
  * then moves left and right horizontally.
+ * @version 2025/6/5
  */
 public class MiniBoss extends Actor 
 {
@@ -13,12 +14,16 @@ public class MiniBoss extends Actor
     private GreenfootSound bgm;
     private int missileTimer =0; //times the space between each missile
     
+    public static int baseXSpeed = 1;
+    public static int baseHealth = 2000;
+    public static int spawnDelay = 180;
+    
     public MiniBoss()
     {
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
 
-        bar = new HealthBar(2000, 200, 5); // Boss health set to 20000
+        bar = new HealthBar(baseHealth, 200, 5); // Boss health set to 2000
     }
     
     public void addedToWorld(World world)
@@ -49,7 +54,7 @@ public class MiniBoss extends Actor
         updateHealthBarPosition();
         
         missileTimer++;
-        if(missileTimer>= 180) //180 frames 5second each time
+        if(missileTimer>= spawnDelay) //180 frames 5second each time
         {
             fireMissiles();
             missileTimer =0;
@@ -74,12 +79,12 @@ public class MiniBoss extends Actor
      *turns around when touches the edge of the screen.
      */
     public void moveSideways() {
-        setLocation(getX() + speedX, getY());
+        setLocation(getX() + baseXSpeed, getY());
 
         // If at the left or right edge, reverse direction
         if (isAtEdge()) 
         {
-            speedX = -speedX; //change direction
+            baseXSpeed = -baseXSpeed; //change direction
         }
     }
     
@@ -120,7 +125,28 @@ public class MiniBoss extends Actor
         
     }
     
-    public GreenfootSound getBGM(){
+    public GreenfootSound getBGM()
+    {
         return bgm;
     }
+    
+    /**
+     * Update difficulty when rank points change
+     */
+    public static void adjust() 
+    {
+        if(GameWorld.victory==true) 
+        {
+            baseXSpeed = Math.min (5, baseXSpeed += 1); 
+            baseHealth += 2000;
+            spawnDelay = Math.min(10, spawnDelay -= 10);
+        }
+        else if(GameWorld.victory == false)
+        {
+            baseHealth = Math.max(2000, baseHealth -=2000);
+            baseXSpeed = Math.max(1, baseXSpeed -=1);
+            spawnDelay = Math.max(180, spawnDelay += 10);
+        }
+    }
+    
 }

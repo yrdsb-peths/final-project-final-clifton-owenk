@@ -4,16 +4,24 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * BasicEnemy is a drone that moves downward.
  * It damages the Jet on contact, drops a coin when destroyed,
  * and disappears when health reaches 0 or off-screen.
+ * @version 2025/6/4
  */
 public class BasicEnemy extends Actor
-{
+{  
+    public static int spawnDelay = 60;
+    public static int baseHealth = 100;
+    public static int baseDamage = 50;
+    
     private int speed = 2;
-    private int health = 100;
+    private int health;
+    private int damage;
     private HealthBar bar;
 
     public BasicEnemy()
     {
-        bar = new HealthBar(100, 40, 5); // 100 HP, bar width 40x5
+        health = baseHealth;
+        damage = baseDamage;
+        bar = new HealthBar(baseHealth, 40, 5); // 100 HP, bar width 40x5
     }
 
     public void addedToWorld(World world)
@@ -67,7 +75,7 @@ public class BasicEnemy extends Actor
             Jet jet = (Jet)getOneIntersectingObject(Jet.class);
             if (jet != null)
             {
-                jet.takeDamage(50); // Deal 50 damage
+                jet.takeDamage(baseDamage); // Deal  damage
             }
 
             Explosion explosion = new Explosion();
@@ -123,5 +131,28 @@ public class BasicEnemy extends Actor
             }
             getWorld().removeObject(this);
         }
+    }
+    
+    /**
+     * Update difficulty when rank points change
+     */
+    public static void adjust() 
+    {
+        if(GameWorld.victory==true) 
+        {
+            spawnDelay = Math.max(10, spawnDelay -2); //never goes under 10
+            baseHealth += 100;
+            baseDamage += 50; 
+        }
+        else if(GameWorld.victory == false)
+        {
+            spawnDelay = Math.max(10, spawnDelay +2);
+            baseHealth = Math.max(100, baseHealth -= 100);
+            baseDamage = Math.max(50, baseDamage -=50);
+        }
+    }
+    public static int getSpawnDelay()
+    {
+        return spawnDelay;
     }
 }

@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class DroneGreen here.
  * 
  * @author (your name) 
- * @version (a version number or a date)
+ * @version 2025/6/4
  */
 public class DroneGreen extends BasicEnemy
 {

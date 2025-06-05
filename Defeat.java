@@ -1,9 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Deat is a screen that shows up when the player's health bar reaches zero
+ * Defeat is a screen that shows up when the player's health bar reaches zero
  * This screen ends the game
  * shows defeat
+ * @version 2025/6/4
  */
 public class Defeat extends World
 {
@@ -17,6 +18,18 @@ public class Defeat extends World
         super(400, 750, 1);  // Same size as game screen
         setBackground("background_blur.png"); //Set the background
         Greenfoot.playSound("sounds/defeat.mp3");
+        
+        // reduce rank points when this screen shown
+        if(GameWorld.rankPoints >= 100)
+        {
+            GameWorld.rankPoints -= 100;
+        }
+        else
+        {
+            GameWorld.rankPoints = 0; 
+        }
+        
+        GameWorld.victory = false; //if is false, can decrease difficulty
     }
     
     public void act()

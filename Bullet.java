@@ -3,6 +3,7 @@ import greenfoot.*;
 /**
  * Bullet class for the jet's automatic shooting.
  * The bullet travels upward and disappears when off-screen.
+ * @version 2025/6/4
  */
 public class Bullet extends Actor
 {

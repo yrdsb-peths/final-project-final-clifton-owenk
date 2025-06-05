@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * show screen when miniBoss defeated
+ * @version 2025/6/4
  */
 public class Victory extends World
 {
@@ -14,6 +15,8 @@ public class Victory extends World
         super(400, 750, 1); 
         setBackground("background_blur.png");
         Greenfoot.playSound("sounds/victory.mp3");
+        GameWorld.rankPoints += 100; // add 100 points when this screen shown
+        GameWorld.victory = true; //if is true, can increase difficulty
     }
     
     public void act()

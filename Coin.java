@@ -1,6 +1,8 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-
+/**
+ * @version 2025/6/4
+ */
 public class Coin extends Actor
 {
     private int speed = 1;

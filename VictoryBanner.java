@@ -2,6 +2,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * VictoryBanne is a short animation to show the player that she/he wins
+ * @version 2025/6/4
  */
 
 public class VictoryBanner extends Actor

@@ -5,6 +5,7 @@ public class Explosion extends Actor
     /**
      * Act - do whatever the Explosion wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
+     * @version 2025/6/4
      */
     
     GreenfootImage [] explosion = new GreenfootImage[4];

@@ -5,7 +5,7 @@
      * This game is meant to be a mobile game, so world size set to phone size (veticle)
      * 
      * @author Kung 
-     * @version May - June 2025
+     * @version 2025/6/4
      */
     public class GameWorld extends World
     {
@@ -16,9 +16,13 @@
         public static int money = 0; 
         public GreenfootSound bgm;
         
+        public static int rankPoints = 0; 
+        //check if victory or defeat, to add difficulty, or decrease difficulty
+        public static boolean victory = false;  
+        
         /**
          * Constructor for objects of class GameWorld.
-         * Set the world size to 360 x 640 (phone verticle size)
+         * Set the world size to 360 x 640 (phone vertical size)
          */
         public GameWorld()
         {    
@@ -33,6 +37,7 @@
             
             bgm = new GreenfootSound("sounds/bgm1.mp3");
             bgm.playLoop();
+           
         }
         
         /**
@@ -47,8 +52,12 @@
             //shows the kill count number at the top left
             showText("" + killCount, 300, 20);
             showText("" + money, 300, 60);
+            showText("MiniBoss speed: " + MiniBoss.baseXSpeed, 300, 100); //test
+            showText("BM DmgPower:"+BossMissile.damagePower, 300, 120);// test
+            showText("rankPoints:"+rankPoints, 300, 140);// test
             
-            if(spawnTimer >= 60 && !bossSpawned)
+             
+            if(spawnTimer >= BasicEnemy.spawnDelay && !bossSpawned)
             {
                 spawnDrone();
                 spawnTimer = 0;
@@ -86,8 +95,8 @@
             addObject(new MiniBoss(), getWidth()/ 2, 0);
         }
         
-        public GreenfootSound getBGM(){
+        public GreenfootSound getBGM()
+        {
             return bgm;
         }
     }
-    

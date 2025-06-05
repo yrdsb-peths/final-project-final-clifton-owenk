@@ -1,11 +1,13 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*;  
 
 /**
  * The Jet class is an object that player is controlling in the game
  * The jet can move up, down, left, and right using the arrow keys.
+ * @version 2025/6/4
  */
 public class Jet extends Actor
 {
+    
     private int autoShootTimer = 0;  // Countdown to control the gap between bullets
     private HealthBar bar;
     /**

@@ -1,8 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-    /**
-     * HealthBar shows how much health a player has
-     */
+/**
+* HealthBar shows how much health a player has
+* @version 2025/6/4
+*/
 public class HealthBar extends Actor
 {
     private int maxHealth =100;
