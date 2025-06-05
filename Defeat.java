@@ -18,6 +18,7 @@ public class Defeat extends World
         super(400, 750, 1);  // Same size as game screen
         setBackground("background_blur.png"); //Set the background
         Greenfoot.playSound("sounds/defeat.mp3");
+<<<<<<< Updated upstream
         
         // reduce rank points when this screen shown
         if(GameWorld.rankPoints >= 100)
@@ -30,6 +31,13 @@ public class Defeat extends World
         }
         
         GameWorld.victory = false; //if is false, can decrease difficulty
+=======
+        if (RankManager.getRankPoints() > 0)
+        {
+            RankManager.subtractPoints(100);
+        }
+
+>>>>>>> Stashed changes
     }
     
     public void act()

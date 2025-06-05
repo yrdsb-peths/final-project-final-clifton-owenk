@@ -14,16 +14,28 @@ public class MiniBoss extends Actor
     private GreenfootSound bgm;
     private int missileTimer =0; //times the space between each missile
     
+<<<<<<< Updated upstream
     public static int baseXSpeed = 1;
     public static int baseHealth = 2000;
     public static int spawnDelay = 180;
+=======
+    int baseHealth =2000;
+    int baseSideSpeed =1;
+    int level = RankManager.getDifficultyLevel();
+>>>>>>> Stashed changes
     
     public MiniBoss()
     {
         setImage("miniBoss.png");
         getImage().scale(200,200); //resize image
+<<<<<<< Updated upstream
 
         bar = new HealthBar(baseHealth, 200, 5); // Boss health set to 2000
+=======
+        
+        bar = new HealthBar(baseHealth + level * 200, 200, 5); //increase 200 each level
+        speedX = baseSideSpeed + level; //gets faster with difficulty
+>>>>>>> Stashed changes
     }
     
     public void addedToWorld(World world)

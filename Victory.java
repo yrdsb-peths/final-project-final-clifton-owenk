@@ -10,13 +10,18 @@ public class Victory extends World
     private boolean bannerAdded = false;
     private boolean buttonAdded = false;
     
+    
     public Victory()
     {    
         super(400, 750, 1); 
         setBackground("background_blur.png");
         Greenfoot.playSound("sounds/victory.mp3");
+<<<<<<< Updated upstream
         GameWorld.rankPoints += 100; // add 100 points when this screen shown
         GameWorld.victory = true; //if is true, can increase difficulty
+=======
+        RankManager.addPoints(100);
+>>>>>>> Stashed changes
     }
     
     public void act()

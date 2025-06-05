@@ -7,6 +7,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BossMissile extends Actor
 {
+<<<<<<< Updated upstream
     //public int speed = 1; // missile speed
     private HealthBar bar; //health bar for missile
     
@@ -14,6 +15,15 @@ public class BossMissile extends Actor
     private static int baseHealth = 200;
     public static int damagePower=50; //public access for testing, change back to privae after testing
     
+=======
+    int baseSpeed = 1;
+    int baseHealth = 200;
+    int level = RankManager.getDifficultyLevel();
+
+    public int speed = baseSpeed + level;
+    private HealthBar bar = new HealthBar(baseHealth + level * 20, 40, 5);
+
+>>>>>>> Stashed changes
     public BossMissile()
     {
         setImage("boss_missile.png"); 
