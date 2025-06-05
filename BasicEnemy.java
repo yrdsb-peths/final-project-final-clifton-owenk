@@ -7,7 +7,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version 2025/6/4
  */
 public class BasicEnemy extends Actor
-<<<<<<< Updated upstream
 {  
     public static int spawnDelay = 60;
     public static int baseHealth = 100;
@@ -16,17 +15,7 @@ public class BasicEnemy extends Actor
     private int speed = 2;
     private int health;
     private int damage;
-=======
-{
->>>>>>> Stashed changes
     private HealthBar bar;
-    
-    int baseHealth = 100;
-    int baseSpeed = 2;
-    int level = RankManager.getDifficultyLevel();
-
-    private int speed = baseSpeed + level;
-    private int health = baseHealth + level * 10; // each level = +10 health
 
     public BasicEnemy()
     {

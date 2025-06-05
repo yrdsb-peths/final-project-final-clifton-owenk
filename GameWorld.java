@@ -15,7 +15,6 @@
         public static int killCount =0; 
         public static int money = 0; 
         public GreenfootSound bgm;
-        private GreenfootImage rankBadge;
         
         public static int rankPoints = 0; 
         //check if victory or defeat, to add difficulty, or decrease difficulty

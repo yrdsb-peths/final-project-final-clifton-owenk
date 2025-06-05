@@ -1,6 +1,4 @@
 import greenfoot.*;
-import greenfoot.GreenfootImage;
-import greenfoot.Greenfoot;
 
 /**
  * MainScreen is the screen is a place to 
@@ -20,13 +18,6 @@ public class MainScreen extends World
         bg.scale(getWidth(), getHeight()); //resize background to world size
         setBackground(bg);
         
-        // Get rank badge image based on current rank
-        GreenfootImage rankBadge = new GreenfootImage(RankManager.getRankBadgeFile());
-        rankBadge.scale(200, 200); // Make the badge large
-
-        // Draw the badge in the center of the screen
-        getBackground().drawImage(rankBadge, getWidth()/2 - 100, getHeight()/2 - 100); 
-
         // add start button, near buttom of main screen
         addObject(new StartButton(), getWidth() / 2, getHeight() - 110); 
         
