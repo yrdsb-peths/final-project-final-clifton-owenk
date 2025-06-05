@@ -11,7 +11,8 @@ public class MainScreen extends World
 {
     private boolean started = false; //check if game started
     private RankBar rankBar; //bar showing rank points
-    public MainScreen() {
+    public MainScreen() 
+    {
         super(400, 750, 1); // size of main screen
         
         GreenfootImage bg = new GreenfootImage("mainScreen_background.png");
@@ -20,6 +21,8 @@ public class MainScreen extends World
         
         // add start button, near buttom of main screen
         addObject(new StartButton(), getWidth() / 2, getHeight() - 110); 
+        // add upgrade jet button
+        addObject(new UpgradeButton(), getWidth()-140, 65);
         
         //show the rank badge
         drawRankBadge();
