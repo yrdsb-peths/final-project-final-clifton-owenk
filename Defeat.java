@@ -51,7 +51,7 @@ public class Defeat extends World
         }
         
         if(!buttonAdded && timer >= 120){
-            addObject(new ReturnButton(), getWidth() / 3, getHeight() / 2 + 300);
+            addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 300);
         }
     }
 }

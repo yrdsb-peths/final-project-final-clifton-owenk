@@ -33,7 +33,7 @@ public class Victory extends World
         }
         
         if(!buttonAdded && frameCounter >= 120){
-            addObject(new ReturnButton(), getWidth() / 3, getHeight() / 2 + 300);
+            addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 300);
         }
     }
 }
