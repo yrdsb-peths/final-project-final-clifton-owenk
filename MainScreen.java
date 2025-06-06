@@ -21,8 +21,11 @@ public class MainScreen extends World
         
         // add start button, near buttom of main screen
         addObject(new StartButton(), getWidth() / 2, getHeight() - 110); 
-        // add upgrade jet button
+        // add to upgrade jet button
         addObject(new UpgradeButton(), getWidth()-140, 65);
+        //add to guideScreen button
+        addObject(new GuideButton(), getWidth() - 58, 65); // adjust position if needed
+
         
         //show the rank badge
         drawRankBadge();
