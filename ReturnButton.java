@@ -7,16 +7,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class ReturnButton extends Actor
 {
     public ReturnButton(){
-        setImage("images/ReturnButton.png");
-        getImage().scale(100, 100);
+        setImage("images/ReturnButton.png"); //Sets the image for the return to home button
+        getImage().scale(100, 100); //resize the image
     }
     
     public void act()
     {
-        
-        
         if(Greenfoot.mouseClicked(this)){
-            Greenfoot.setWorld(new MainScreen());
+            Greenfoot.setWorld(new MainScreen()); // when the button is pressed, it returns to the home screen
         }
     }
 }

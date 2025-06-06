@@ -4,7 +4,7 @@
      * GameWorld is the place where the game is played
      * This game is meant to be a mobile game, so world size set to phone size (veticle)
      * 
-     * @author Kung 
+     * @author Kung, Lin
      * @version 2025/6/4
      */
     public class GameWorld extends World
@@ -97,6 +97,6 @@
         
         public GreenfootSound getBGM()
         {
-            return bgm;
+            return bgm; //Returns the background music for the gameworld
         }
     }

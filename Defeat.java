@@ -11,7 +11,7 @@ public class Defeat extends World
     private int timer = 0; //delay showing defeat banner timer
     private boolean bannerShown = false;
     private boolean wordShown = false;
-    private boolean buttonAdded = false;
+    private boolean buttonAdded = false; //checks if the button is added
     
     public Defeat()
     {    
@@ -51,7 +51,7 @@ public class Defeat extends World
         }
         
         if(!buttonAdded && timer >= 120){
-            addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 300);
+            addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 300); //the return to home button shows on the defeat screen after playing the defeat sound (approx: 2 seconds)
         }
     }
 }
