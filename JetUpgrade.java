@@ -17,6 +17,8 @@ public class JetUpgrade extends World
         addObject(new JetSpeedUpgradeButton(), getWidth() -140, 630);
         //Add button
         addObject(new BulletReloadUpgradeButton(), getWidth() -140, 700);
+        //AddReturnButton
+        addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 55); 
         
         //show money on top
         showText("" + GameWorld.money, 250, 45); //show current money
