@@ -24,7 +24,7 @@ public class MainScreen extends World
         // add to upgrade jet button
         addObject(new UpgradeButton(), getWidth()-140, 65);
         //add to guideScreen button
-        addObject(new GuideButton(), getWidth() - 58, 65); // adjust position if needed
+        addObject(new GuideButton(), getWidth() - 58, 65); 
 
         
         //show the rank badge

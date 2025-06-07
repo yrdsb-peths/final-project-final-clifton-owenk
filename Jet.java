@@ -10,6 +10,11 @@ public class Jet extends Actor
     
     private int autoShootTimer = 0;  // Countdown to control the gap between bullets
     private HealthBar bar;
+    
+    private static int baseHealth = 100;
+    private static int baseSpeed = 5;
+    private static int shootDelay = 20;
+    
     /**
      * Constructor: Sets the image of the Jet to the provided jet.png file.
      */
