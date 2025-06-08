@@ -4,7 +4,7 @@ public class TitleScreen extends World
 {
     private GreenfootImage[] titleImages = new GreenfootImage[7];
     private int frame =0; //cur frame
-    private int delay =100; //how long each image stays (in frames)
+    private int delay =60; //how long each image stays 
     private int timer = 0; 
     public TitleScreen()
     {    
