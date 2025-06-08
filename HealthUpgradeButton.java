@@ -1,11 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-public class HealthUpgradeButton extends Actor
+/**
+  * When this button is pressed
+  * it will ask user to confirm if player would like to proceed with the upgrade
+  * depends on the moeny the player has in the GameWorld
+  * Confirm - dedcut money from GamewWorld.money and upgrade Jet's health
+  * 
+  * @author (Kung, Lin)
+  * @version (2025/6/7)
+*/
+
+public class HealthUpgradeButton extends JetUpgradeButtons
 {
     private GreenfootImage defaultImage = new GreenfootImage("HealthUpgrade.png");
     private GreenfootImage pressedImage = new GreenfootImage("UpgradeButtonPressed.png");
     
-    public HealthUpgradeButton()
+    //indicator that will later help to identiy which button is pressed
+    public static boolean pressed = false; 
+    
+    public HealthUpgradeButton ()
     {
         //Resize image
         defaultImage.scale(220,55);
@@ -19,11 +32,13 @@ public class HealthUpgradeButton extends Actor
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
+            pressed = true; 
         }
-        
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
             setImage(defaultImage);
+            askUpgrade();
         }
     }
+ 
 }

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * The Jet class is an object that player is controlling in the game
  * The jet can move up, down, left, and right using the arrow keys.
- * @version 2025/6/4
+ * @version 2025/6/6
  */
 public class Jet extends Actor
 {
@@ -11,7 +11,7 @@ public class Jet extends Actor
     private int autoShootTimer = 0;  // Countdown to control the gap between bullets
     private HealthBar bar;
     
-    private static int baseHealth = 100;
+    public static int baseHealth = 100;
     private static int baseSpeed = 5;
     private static int shootDelay = 20;
     
@@ -24,7 +24,7 @@ public class Jet extends Actor
         image.scale(100, 100); // Resize the image to 100x100 
         setImage(image); // Apply the resized image to Jet
         
-        bar = new HealthBar(100, 100, 5);//add healthbar, and set maxHealth to 100
+        bar = new HealthBar(baseHealth, 100, 5);//add healthbar, and set maxHealth to 100
     }
 
     public void act()

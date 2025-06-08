@@ -13,7 +13,7 @@
         private int timePassed = 0;
         private boolean bossSpawned = false;
         public static int killCount =0; 
-        public static int money = 0; 
+        public static int money = 0; //can change value to test upgrade
         public GreenfootSound bgm;
         
         public static int rankPoints = 0; 
