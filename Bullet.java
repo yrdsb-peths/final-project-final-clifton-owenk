@@ -3,11 +3,12 @@ import greenfoot.*;
 /**
  * Bullet class for the jet's automatic shooting.
  * The bullet travels upward and disappears when off-screen.
- * @version 2025/6/4
+ * @version 2025/6/8
  */
 public class Bullet extends Actor
 {
     private int speed = 10;
+    public static int baseDamage = 100; 
 
     public Bullet() 
     {
@@ -24,7 +25,7 @@ public class Bullet extends Actor
         BasicEnemy enemy = (BasicEnemy)getOneIntersectingObject(BasicEnemy.class);
         if (enemy != null)
         {
-            enemy.takeDamage(100); // Deal 100 damage
+            enemy.takeDamage(baseDamage); // Deal 100 damage
             getWorld().removeObject(this); // Remove bullet
             return;
         }
@@ -33,7 +34,7 @@ public class Bullet extends Actor
         MiniBoss boss = (MiniBoss)getOneIntersectingObject(MiniBoss.class);
         if(boss!=null)
         {
-            boss.takeDamage(100);
+            boss.takeDamage(baseDamage);
             getWorld().removeObject(this);
             return;
         }

@@ -3,7 +3,7 @@ import greenfoot.*;
 /**
  * The Jet class is an object that player is controlling in the game
  * The jet can move up, down, left, and right using the arrow keys.
- * @version 2025/6/6
+ * @version 2025/6/8
  */
 public class Jet extends Actor
 {
@@ -12,8 +12,8 @@ public class Jet extends Actor
     private HealthBar bar;
     
     public static int baseHealth = 100;
-    private static int baseSpeed = 5;
-    private static int shootDelay = 20;
+    public static int baseSpeed = 3;
+    public static int shootInterval = 20;
     
     /**
      * Constructor: Sets the image of the Jet to the provided jet.png file.
@@ -43,25 +43,25 @@ public class Jet extends Actor
         //Move the jet up if the "up" key is pressed
         if (Greenfoot.isKeyDown("w")) 
         {
-            setLocation(getX(), getY() - 5);
+            setLocation(getX(), getY() - baseSpeed);
         }
         
         // Move the jet down if the "down" key is pressed
         if (Greenfoot.isKeyDown("s")) 
         {
-            setLocation(getX(), getY() + 5);
+            setLocation(getX(), getY() + baseSpeed);
         }
 
         // Move the jet left if the "left" key is pressed
         if (Greenfoot.isKeyDown("a")) 
         {
-            setLocation(getX() - 5, getY());
+            setLocation(getX() - baseSpeed, getY());
         }
 
         // Move the jet right if the "right" key is pressed
         if (Greenfoot.isKeyDown("d")) 
         {
-            setLocation(getX() + 5, getY());
+            setLocation(getX() + baseSpeed, getY());
         }
     }
     
@@ -74,7 +74,7 @@ public class Jet extends Actor
         {
             Bullet bullet = new Bullet();  // Create a new bullet
             getWorld().addObject(bullet, getX(), getY() - 50);  // bullet position above jet
-            autoShootTimer = 20;  // Delay between shots 20 frames (3 per second)
+            autoShootTimer = shootInterval;  // Delay between shots 20 frames (3 per second)
         }
 
         if (autoShootTimer > 0) 

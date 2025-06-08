@@ -7,12 +7,13 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
   * Confirm - dedcut money from GamewWorld.money and upgrade Jet's attack power
   * 
   * @author (Kung, Lin)
-  * @version (2025/6/7)
+  * @version (2025/6/8)
 */
 public class AttackUpgradeButton extends JetUpgradeButtons
 {
     private GreenfootImage defaultImage = new GreenfootImage("AttackUpgrade.png");
     private GreenfootImage pressedImage = new GreenfootImage("UpgradeButtonPressed.png");
+    public static boolean pressed = false; 
     
     public AttackUpgradeButton()
     {
@@ -27,11 +28,13 @@ public class AttackUpgradeButton extends JetUpgradeButtons
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
+            pressed = true; 
         }
         
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
             setImage(defaultImage);
+            askUpgrade();
         }
     }
 }

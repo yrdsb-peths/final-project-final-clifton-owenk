@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * BasicEnemy is a drone that moves downward.
  * It damages the Jet on contact, drops a coin when destroyed,
  * and disappears when health reaches 0 or off-screen.
- * @version 2025/6/4
+ * @version 2025/6/8
  */
 public class BasicEnemy extends Actor
 {  
@@ -60,7 +60,7 @@ public class BasicEnemy extends Actor
             if(bullet != null && bullet.getWorld() != null)
             {
                 getWorld().removeObject(bullet);
-                takeDamage(100); 
+                takeDamage(Bullet.baseDamage); 
             }
         }
     }

@@ -4,7 +4,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
   * JetUpgrade is the place where play can upgrade it's jet
   * 
   * @author Kung, Lin
-  * @version 2025/6/6
+  * @version 2025/6/8
 */
 public class JetUpgrade extends World
 {
@@ -40,9 +40,9 @@ public class JetUpgrade extends World
         //show money on top
         showText("" + GameWorld.money, 250, 45); //show current money
         showText(""+ Jet.baseHealth,120, 125);
-        showText(""+ "UR",120, 155); 
-        showText(""+ "LR",250, 125);
-        showText(""+ "LR",250, 155);
+        showText(""+ Bullet.baseDamage,120, 155); 
+        showText(""+ Jet.baseSpeed,250, 125);
+        showText(""+ Jet.shootInterval, 250,155);
       
     }
     public static boolean allowUpdate()

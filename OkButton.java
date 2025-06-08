@@ -3,7 +3,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
   * 
   * @author Kung, Lin
-  * @version 2025/6/7
+  * @version 2025/6/8
 */
 
 public class OkButton extends Actor
@@ -40,7 +40,7 @@ public class OkButton extends Actor
             {
                 getWorld().removeObject(cancelButton);
             }
-            getWorld().removeObject(this);           
+            getWorld().removeObject(this);  
         }
     }
     public void add(CancelButton cancelButton)
@@ -56,6 +56,30 @@ public class OkButton extends Actor
             
             //reset button pressed to false
             HealthUpgradeButton.pressed=false;
+        }
+        if(AttackUpgradeButton.pressed && JetUpgrade.allowUpdate())
+        {
+            Bullet.baseDamage +=100;
+            GameWorld.money=Math.max(0, GameWorld.money-= 50000);
+            
+            //reset button pressed to false
+            AttackUpgradeButton.pressed= false; 
+        }
+        if(BulletReloadUpgradeButton.pressed && JetUpgrade.allowUpdate())
+        {
+            Jet.shootInterval -= 2;
+            GameWorld.money=Math.max(0, GameWorld.money-=50000);
+            
+            //reset button pressed to false
+            AttackUpgradeButton.pressed = false; 
+        }
+        if(JetSpeedUpgradeButton.pressed && JetUpgrade.allowUpdate())
+        {
+            Jet.baseSpeed +=1;
+            GameWorld.money = Math.max(0, GameWorld.money-=50000);
+            
+            //reset button pressed to false
+            JetSpeedUpgradeButton.pressed = false; 
         }
     }
 }

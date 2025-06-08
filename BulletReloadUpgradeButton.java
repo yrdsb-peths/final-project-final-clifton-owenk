@@ -15,6 +15,7 @@ public class BulletReloadUpgradeButton extends JetUpgradeButtons
 {
     private GreenfootImage defaultImage = new GreenfootImage("BulletReloadUpgrade.png");
     private GreenfootImage pressedImage = new GreenfootImage("UpgradeButtonPressed.png");
+    public static boolean pressed = false; 
     
     public BulletReloadUpgradeButton()
     {
@@ -30,11 +31,13 @@ public class BulletReloadUpgradeButton extends JetUpgradeButtons
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
+            pressed = true;
         }
         
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
             setImage(defaultImage);
+            askUpgrade();
         }
     }
 }

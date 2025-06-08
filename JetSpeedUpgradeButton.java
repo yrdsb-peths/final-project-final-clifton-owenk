@@ -15,6 +15,7 @@ public class JetSpeedUpgradeButton extends JetUpgradeButtons
 {
     private GreenfootImage defaultImage = new GreenfootImage("JetSpeedUpgrade.png");
     private GreenfootImage pressedImage = new GreenfootImage("UpgradeButtonPressed.png");
+    public static boolean pressed = false; 
     
     public JetSpeedUpgradeButton()
     {
@@ -30,11 +31,13 @@ public class JetSpeedUpgradeButton extends JetUpgradeButtons
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
+            pressed = true; 
         }
         
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
             setImage(defaultImage);
+            askUpgrade();
         }
     }
 }
