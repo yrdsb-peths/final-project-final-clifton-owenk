@@ -26,6 +26,7 @@ public class CancelButton extends Actor
         }
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
+            Greenfoot.playSound("sounds/buttonPress2.mp3");
             setImage(defaultImage);
             //pressed = true; 
             getWorld().removeObject(popScreen);

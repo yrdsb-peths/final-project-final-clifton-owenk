@@ -30,6 +30,7 @@ public class JetSpeedUpgradeButton extends JetUpgradeButtons
     {
         if(Greenfoot.mousePressed(this)) //when clicked
         {
+            Greenfoot.playSound("sounds/buttonPress2.mp3");
             setImage(pressedImage);
             pressed = true; 
         }

@@ -30,6 +30,7 @@ public class OkButton extends Actor
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
+            Greenfoot.playSound("sounds/buttonPress2");
         }
         if(Greenfoot.mouseClicked(this)) // mouse release
         {

@@ -27,6 +27,7 @@ public class AttackUpgradeButton extends JetUpgradeButtons
     {
         if(Greenfoot.mousePressed(this)) //when clicked
         {
+            Greenfoot.playSound("sounds/buttonPress2");
             setImage(pressedImage);
             pressed = true; 
         }
