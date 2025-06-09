@@ -11,6 +11,8 @@ public class MainScreen extends World
 {
     private boolean started = false; //check if game started
     private RankBar rankBar; //bar showing rank points
+    private GreenfootSound bgm;
+    
     public MainScreen() 
     {
         super(400, 750, 1); // size of main screen
@@ -39,6 +41,9 @@ public class MainScreen extends World
     public void act() 
     {
         showText("" + GameWorld.money, 170, 120); //show current money
+        
+        bgm = new GreenfootSound("sounds/mainScreen.mp3");
+        bgm.playLoop();
     }
     
     private void drawRankBadge()
@@ -127,5 +132,9 @@ public class MainScreen extends World
         {
             return 2200;
         }
+    }
+    
+    private GreenfootSound getBGM(){
+        return bgm;
     }
 }
