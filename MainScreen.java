@@ -42,7 +42,7 @@ public class MainScreen extends World
     {
         showText("" + GameWorld.money, 170, 120); //show current money
         
-        bgm = new GreenfootSound("sounds/MainScreen.mp3");
+        bgm = new GreenfootSound("sounds/mainScreen.mp3");
         bgm.playLoop();
     }
     
