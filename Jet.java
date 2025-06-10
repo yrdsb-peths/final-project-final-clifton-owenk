@@ -10,9 +10,9 @@ import greenfoot.*;
  *   -Triggers a defeat screen when health reaches zero
  * 
  * @author Kung, Lin
- * @version 2025/6/8
+ * @version 2025/6/10
  */
-public class Jet extends Actor
+public class Jet extends Collidable
 {
     
     private int autoShootTimer = 0;  // Countdown to control the gap between bullets

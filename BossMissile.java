@@ -15,17 +15,17 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *  -Damage power
  * 
  * @author Kung, Lin
- * @version 2025/6/5
+ * @version 2025/6/10
  */
 
-public class BossMissile extends Actor
+public class BossMissile extends Collidable
 {
     //public int speed = 1; // missile speed
     private HealthBar bar; //health bar for missile
     
-    private static int baseSpeed = 1;
-    private static int baseHealth = 200;
-    private static int damagePower=50; 
+    public static int baseSpeed = 1;
+    public static int baseHealth = 200;
+    public static int damagePower=50; 
     
     /**
      * Constructs a BossMissile with its image, size, and health bar.
@@ -67,21 +67,19 @@ public class BossMissile extends Actor
             updateHealthBarPosition(); // Only update position if bar is in the world
         }
         
-        //ifhits the Jet, deal dameg
-        if(isTouching(Jet.class))
+        //ifhits the Jet, deal damage
+        Jet jet = (Jet)getOneIntersectingObject(Jet.class);
+        if(jet!=null && isPixelTouching(jet))
         {
-            Jet jet = (Jet) getOneIntersectingObject(Jet.class);
-            if(jet != null)
-            {
-                jet.takeDamage(damagePower); //jet damaged by missel by amount of damage Power
-            }
+            jet.takeDamage(damagePower); //jet damaged by missel by amount of damage Power
+                
             removeSelf();
             return; //code wont run after missile removed
         }
         
         // If gets contact a bullet
         Bullet bullet = (Bullet)getOneIntersectingObject(Bullet.class);
-        if (bullet != null) 
+        if (bullet != null && isPixelTouching(bullet))
         {
             if(bullet.getWorld() != null)
             {
@@ -155,7 +153,7 @@ public class BossMissile extends Actor
     {
         if(GameWorld.victory==true) 
         {
-            baseSpeed += 1;
+            baseSpeed=Math.min(5,baseSpeed += 1);
             baseHealth += 200;
             damagePower+=50;
         }

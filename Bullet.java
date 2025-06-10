@@ -15,7 +15,7 @@ import greenfoot.*;
  * @version 2025/6/8
  */
 
-public class Bullet extends Actor
+public class Bullet extends Collidable
 {
     private int speed = 10;
     
@@ -47,16 +47,16 @@ public class Bullet extends Actor
 
         // Check if bullet hits a drone, get removed and does damage when contact basicEnemy
         BasicEnemy enemy = (BasicEnemy)getOneIntersectingObject(BasicEnemy.class);
-        if (enemy != null)
+        if (enemy != null && isPixelTouching(enemy))
         {
-            enemy.takeDamage(baseDamage); // Deal 100 damage
+            enemy.takeDamage(baseDamage); // Deal damage
             getWorld().removeObject(this); // Remove bullet
             return;
         }
         
         //check if bullet hit MiniBoss, get removed and does damage when contact miniBoss
         MiniBoss boss = (MiniBoss)getOneIntersectingObject(MiniBoss.class);
-        if(boss!=null)
+        if(boss!=null && isPixelTouching(boss))
         {
             boss.takeDamage(baseDamage);
             getWorld().removeObject(this);
@@ -68,5 +68,5 @@ public class Bullet extends Actor
         {
             getWorld().removeObject(this);
         }
-    }
+    }    
 }

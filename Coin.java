@@ -13,7 +13,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author Kung, Lin
  * @version 2025/6/4
  */
-public class Coin extends Actor
+public class Coin extends Collidable
 {
     private int speed = 1;
     
@@ -36,7 +36,8 @@ public class Coin extends Actor
      */
     public void act()
     {
-        if (isTouching(Jet.class)) {
+        Jet jet = (Jet)getOneIntersectingObject(Jet.class);
+        if (jet!=null && isPixelTouching(jet)){
             Greenfoot.playSound("sounds/coin.mp3");
             getWorld().removeObject(this);
             GameWorld.money += 1000;

@@ -9,9 +9,9 @@ import greenfoot.*;
  *  -Triggers the victory screen when defeated.
  * 
  * @author Kung, Lin
- * @version 2025/6/5
+ * @version 2025/6/10
  */
-public class MiniBoss extends Actor 
+public class MiniBoss extends Collidable
 {
     private int speedY = 2;      // Speed for moving down
     private int speedX = 1;      // Speed for moving sideways
@@ -19,6 +19,7 @@ public class MiniBoss extends Actor
     private HealthBar bar;
     private GreenfootSound bgm;
     private int missileTimer =0; //times the space between each missile
+    private int jetCollisionDamage=100;
     
     public static int baseXSpeed = 1;
     public static int baseHealth = 2000;
@@ -72,9 +73,25 @@ public class MiniBoss extends Actor
             fireMissiles();
             missileTimer =0;
         }
+
+        //If Jet collide with MinisBoss 100 health deducted
+        checkCollision();
+    }
+    
+    /*
+     * If Jet collides with MiniBoss 100 health deducted
+     */
+    private void checkCollision()
+    {
+        Jet jet = (Jet)getOneIntersectingObject(Jet.class);
+        if(jet!=null && isPixelTouching(jet))
+        {
+            jet.takeDamage(jetCollisionDamage);
+        }
     }
 
-    /**
+
+/**
      * Moves the boss downward until it reaches 1/3 of the screen height.
      */
     public void moveDown() 
@@ -156,15 +173,15 @@ public class MiniBoss extends Actor
     {
         if(GameWorld.victory==true) 
         {
-            baseXSpeed = Math.min (5, baseXSpeed += 1); 
             baseHealth += 2000;
-            spawnDelay = Math.min(10, spawnDelay -= 10);
+            baseXSpeed = Math.min (5, baseXSpeed += 1); 
+            spawnDelay = Math.max(10, spawnDelay -= 10);
         }
         else if(GameWorld.victory == false)
         {
             baseHealth = Math.max(2000, baseHealth -=2000);
             baseXSpeed = Math.max(1, baseXSpeed -=1);
-            spawnDelay = Math.max(180, spawnDelay += 10);
+            spawnDelay = Math.min(180, spawnDelay += 10);
         }
     }
     

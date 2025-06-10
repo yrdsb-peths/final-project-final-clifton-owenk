@@ -18,6 +18,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class JetUpgrade extends World
 {
+    private static int upgradeMinimum=50000;
+    
     /**
      * Constructs the JetUpgrade screen.
      * 
@@ -73,6 +75,6 @@ public class JetUpgrade extends World
      */
     public static boolean allowUpdate()
     {   
-        return GameWorld.money>=50000;
+        return GameWorld.money>=upgradeMinimum;
     }
 }

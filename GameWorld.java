@@ -21,13 +21,14 @@
    * 
    * 
    * @author Kung, Lin
-   * @version 2025/6/4
+   * @version 2025/6/10
    */
     public class GameWorld extends World
     {
        private int spawnTimer = 0;
        private int timePassed = 0;
        private boolean bossSpawned = false;
+       private int miniBossSpawnTime=1800; //in frames
        
        public static int killCount =0; 
        public static int money = 0; //can change value to test upgrade
@@ -74,10 +75,18 @@
             //shows the kill count number at the top left
             showText("" + killCount, 300, 20);
             showText("" + money, 300, 60);
+            
+            //Test Messages
             //showText("MiniBoss speed: " + MiniBoss.baseXSpeed, 300, 100); //test
             //showText("BM DmgPower:"+BossMissile.damagePower, 300, 120);// test
-            //showText("rankPoints:"+rankPoints, 300, 140);// test
-            
+            showText("MiniBoss Spawn:"+MiniBoss.spawnDelay, 0, 100);// test
+            showText("Basic Enemy Spawn:"+BasicEnemy.spawnDelay, 0, 200);// test
+            showText("Boss Missile Speed:"+BossMissile.baseSpeed, 0, 300);// test
+            //showText("RankPoints:"+rankPoints, 300, 100);// test
+            showText("Health:"+ Jet.baseHealth,120, 125);
+            showText("Damage:"+ Bullet.baseDamage,120, 155); 
+            showText("Speed"+ Jet.baseSpeed,250, 125);
+            showText("Interval:"+ Jet.shootInterval, 250,155);
              
             if(spawnTimer >= BasicEnemy.spawnDelay && !bossSpawned)
             {
@@ -85,7 +94,7 @@
                 spawnTimer = 0;
             }
             
-            if(timePassed >= 1800 && !bossSpawned)
+            if(timePassed >= miniBossSpawnTime && !bossSpawned)
             {
                 spawnMiniBoss();
                 bossSpawned = true;

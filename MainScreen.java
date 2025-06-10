@@ -20,7 +20,8 @@ public class MainScreen extends World
 {
     private boolean started = false; //check if game started
     private RankBar rankBar; //bar showing rank points
-    private GreenfootSound bgm;
+    
+    public static GreenfootSound bgm= new GreenfootSound("sounds/mainScreen.mp3");
     
     /**
      * Constructs the main title screen.
@@ -31,12 +32,17 @@ public class MainScreen extends World
      */
     public MainScreen() 
     {
-        super(400, 750, 1); // size of main screen
-        
+        super(400, 750, 1); // size of main screen  
         GreenfootImage bg = new GreenfootImage("mainScreen_background.png");
         bg.scale(getWidth(), getHeight()); //resize background to world size
         setBackground(bg);
-        
+        prepare();
+    }
+    /**
+     * Prepare UI elements of MainScreen
+     */
+    public void prepare()
+    {
         // add start button, near buttom of main screen
         addObject(new StartButton(), getWidth() / 2, getHeight() - 110); 
         // add to upgrade jet button
@@ -54,7 +60,15 @@ public class MainScreen extends World
         int maxPoints = getMaxPoints(points);
         rankBar = new RankBar(points, maxPoints, 200, 20);
         addObject(rankBar, getWidth()/2, 470); //add bar below text
-    }
+        
+        //bgm = new GreenfootSound("sounds/mainScreen.mp3");
+        if(!bgm.isPlaying())
+        {
+           bgm.setVolume(30);
+           bgm.playLoop(); 
+        }
+              
+    }   
     /**
      * Update the money that the plaeyer's earned for every frane
      */
@@ -160,8 +174,10 @@ public class MainScreen extends World
             return 2200;
         }
     }
-    
-    private GreenfootSound getBGM(){
-        return bgm;
+    /**
+     * Get background music of the world
+     */
+    public GreenfootSound getBGM(){
+        return bgm; //returns the background music of the MainScreen
     }
 }

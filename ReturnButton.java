@@ -23,7 +23,9 @@ public class ReturnButton extends Actor
     {
         if(Greenfoot.mouseClicked(this)){
             Greenfoot.playSound("sounds/buttonPress2.mp3");
-            Greenfoot.setWorld(new MainScreen()); // when the button is pressed, it returns to the home screen
-        }
+            Greenfoot.setWorld(new MainScreen()); // when the button is pressed, it returns to the home screen    
+            //MainScreen.getInstance().prepare();
+            //Greenfoot.setWorld(MainScreen.getInstance());   
+      }
     }
 }

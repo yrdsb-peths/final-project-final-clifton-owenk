@@ -34,6 +34,7 @@ public class TitleScreen extends World
             titleImages[i].scale(getWidth(), getHeight());
         }
         setBackground(titleImages[frame]);
+        
     }
     /**
      * Displays each image for a short duration and moves to the next image until all are d.

@@ -42,10 +42,16 @@ public class StartButton extends Actor {
 
         if (Greenfoot.mouseClicked(this)) 
         {
+            //GameWorld.victory=true; //for test
             Greenfoot.playSound("start.mp3"); //play sound when clicked
             BasicEnemy.adjust(); //adjust difficulty for basic enemy
             MiniBoss.adjust(); //adjust difficulty for basic enemy
             BossMissile.adjust(); //adjust difficulty for BossMissile
+            GameWorld.victory=false;  //for test
+            if(MainScreen.bgm.isPlaying())
+            {
+                    MainScreen.bgm.stop();
+            }   
             Greenfoot.setWorld(new GameWorld()); // Start the game
         }
     }

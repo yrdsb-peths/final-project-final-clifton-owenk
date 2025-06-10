@@ -11,9 +11,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Its difficulty (spawn rate, health, damage) depends on player’s rank
  * 
  * @autho: Kung, Lin
- * @version 2025/6/4
+ * @version 2025/6/10
  */
-public class BasicEnemy extends Actor
+public class BasicEnemy extends Collidable
 {  
     public static int spawnDelay = 60; //Delay between spawns, in frames
     public static int baseHealth = 100; //Base health for all BasicEnemy instances
@@ -95,13 +95,10 @@ public class BasicEnemy extends Actor
      */
     public void checkCollisionWithJet()
     {
-        if (isTouching(Jet.class))
+        Jet jet = (Jet)getOneIntersectingObject(Jet.class);
+        if (jet!=null && isPixelTouching(jet))
         {
-            Jet jet = (Jet)getOneIntersectingObject(Jet.class);
-            if (jet != null)
-            {
-                jet.takeDamage(baseDamage); // Deal  damage
-            }
+            jet.takeDamage(baseDamage); // Deal  damage
 
             Explosion explosion = new Explosion();
             getWorld().addObject(explosion, getX(), getY());
@@ -181,7 +178,7 @@ public class BasicEnemy extends Actor
         }
         else if(GameWorld.victory == false)
         {
-            spawnDelay = Math.max(10, spawnDelay +2);
+            spawnDelay = Math.min(60, spawnDelay +2);
             baseHealth = Math.max(100, baseHealth -= 100);
             baseDamage = Math.max(50, baseDamage -=50);
         }
