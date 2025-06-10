@@ -37,7 +37,8 @@
        public static int rankPoints = 0; 
         //check if victory or defeat, to add difficulty, or decrease difficulty
        public static boolean victory = false;  
-        
+       public static boolean gamePlay=true;
+       
        /**
         * Constructs a new GameWorld.
         *
@@ -55,12 +56,19 @@
             //add jet in centre, slightly lower vertically
             addObject(jet, getWidth()/2, getHeight()/2 + 80); 
             //add killCounterBanner, at top
-            addObject(new KillCounterBanner(), getWidth() / 2, 40); 
-            setBackground("images/background.png");
+            addObject(new KillCounterBanner(), getWidth() / 2, 40);
+            //add ReturnButton
+            addObject(new ReturnButton(), getWidth() / 2+135, 40); 
             
+            //Background
+            setBackground("images/background.png");
             bgm = new GreenfootSound("sounds/bgm1.mp3");
             bgm.playLoop();
-           
+            
+            //indicates player is in GameWorld
+            //this flag must be set to false when intitializing other World
+            //So ReturnButton can work properly
+            GameWorld.gamePlay=true; 
        }
        
        /**
@@ -73,21 +81,10 @@
             timePassed++;
             
             //shows the kill count number at the top left
-            showText("" + killCount, 300, 20);
-            showText("" + money, 300, 60);
+            showText("" + killCount, 200, 20);
+            showText("" + money, 200, 60);
+            //showTest();//for debugging purpose
             
-            //Test Messages
-            //showText("MiniBoss speed: " + MiniBoss.baseXSpeed, 300, 100); //test
-            //showText("BM DmgPower:"+BossMissile.damagePower, 300, 120);// test
-            showText("MiniBoss Spawn:"+MiniBoss.spawnDelay, 0, 100);// test
-            showText("Basic Enemy Spawn:"+BasicEnemy.spawnDelay, 0, 200);// test
-            showText("Boss Missile Speed:"+BossMissile.baseSpeed, 0, 300);// test
-            //showText("RankPoints:"+rankPoints, 300, 100);// test
-            showText("Health:"+ Jet.baseHealth,120, 125);
-            showText("Damage:"+ Bullet.baseDamage,120, 155); 
-            showText("Speed"+ Jet.baseSpeed,250, 125);
-            showText("Interval:"+ Jet.shootInterval, 250,155);
-             
             if(spawnTimer >= BasicEnemy.spawnDelay && !bossSpawned)
             {
                 spawnDrone();
@@ -99,6 +96,23 @@
                 spawnMiniBoss();
                 bossSpawned = true;
             }
+       }
+       /**
+        * Show text that help debug program work correctly
+        */
+       private void showTest()
+       {
+              //Test Messages
+            //showText("MiniBoss speed: " + MiniBoss.baseXSpeed, 300, 100); //test
+            //showText("BM DmgPower:"+BossMissile.damagePower, 300, 120);// test
+            showText("MiniBoss Spawn:"+MiniBoss.spawnDelay, 80, 100);// test
+            showText("Basic Enemy Spawn:"+BasicEnemy.spawnDelay, 80, 200);// test
+            showText("Boss Missile Speed:"+BossMissile.baseSpeed, 80, 300);// test
+            //showText("RankPoints:"+rankPoints, 300, 100);// test
+            showText("Health:"+ Jet.baseHealth,120, 125);
+            showText("Damage:"+ Bullet.baseDamage,120, 155); 
+            showText("Speed"+ Jet.baseSpeed,250, 125);
+            showText("Interval:"+ Jet.shootInterval, 250,155);
        }
        /**
          * Spawns a random drone enemy (red, green, or purple) at a random horizontal position.

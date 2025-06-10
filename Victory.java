@@ -33,6 +33,7 @@ public class Victory extends World
         Greenfoot.playSound("sounds/victory.mp3");
         GameWorld.rankPoints += 100; // add 100 points when this screen shown
         GameWorld.victory = true; //if is true, can increase difficulty
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
     }
     /**
      * Displays the victory banner after a short delay

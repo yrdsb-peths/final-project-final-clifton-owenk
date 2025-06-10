@@ -11,7 +11,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *  -Signal to the GameWorld that the player has lost.  (victory==false)
  *  
  * @author: Kung, Lin
- * @version 2025/6/4
+ * @version 2025/6/10
  */
 
 public class Defeat extends World
@@ -48,6 +48,7 @@ public class Defeat extends World
         }
         
         GameWorld.victory = false; //if is false, can decrease difficulty
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
     }
          
     /**

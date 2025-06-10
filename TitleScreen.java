@@ -16,7 +16,8 @@ public class TitleScreen extends World
     private int frame =0; //cur frame
     private int delay =60; //how long each image stays 
     private int timer = 0; 
-    
+    private GreenfootSound bgm;
+     
     /**
      * Constructs the title screen.
      * 
@@ -27,6 +28,32 @@ public class TitleScreen extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(400,750, 1); 
         
+        //show images while player waiting for the game to start
+        slideShow();
+        
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
+    }
+    /**
+     * Stars music only after play button is pressed on the Greenfoot interface
+     */
+    public void started()
+    {
+           //playBGM();
+    }
+    /**
+     *  Play BGM for Title Screen
+     */
+    private void playBGM()
+    {
+       bgm= new GreenfootSound("sounds/mainScreen.mp3");
+       bgm.setVolume(20);
+       bgm.play();
+    }
+    /**
+     * Show images while player waiting for the game to start
+     */
+    private void slideShow()
+    {
         //Load all title images into array
         for(int i=0; i<titleImages.length; i++)
         {
@@ -34,7 +61,6 @@ public class TitleScreen extends World
             titleImages[i].scale(getWidth(), getHeight());
         }
         setBackground(titleImages[frame]);
-        
     }
     /**
      * Displays each image for a short duration and moves to the next image until all are d.
@@ -54,6 +80,9 @@ public class TitleScreen extends World
             }
             else
             {
+                //stop the background music before switch world
+                //bgm.setVolume(5);
+                //bgm.stop();
                 Greenfoot.setWorld(new MainScreen());
             }
         }

@@ -21,7 +21,7 @@ public class MainScreen extends World
     private boolean started = false; //check if game started
     private RankBar rankBar; //bar showing rank points
     
-    public static GreenfootSound bgm= new GreenfootSound("sounds/mainScreen.mp3");
+    public static GreenfootSound bgm= new GreenfootSound("sounds/bgm2.mp3");
     
     /**
      * Constructs the main title screen.
@@ -37,6 +37,7 @@ public class MainScreen extends World
         bg.scale(getWidth(), getHeight()); //resize background to world size
         setBackground(bg);
         prepare();
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
     }
     /**
      * Prepare UI elements of MainScreen
@@ -61,14 +62,21 @@ public class MainScreen extends World
         rankBar = new RankBar(points, maxPoints, 200, 20);
         addObject(rankBar, getWidth()/2, 470); //add bar below text
         
-        //bgm = new GreenfootSound("sounds/mainScreen.mp3");
+        //playBGM(); 
+              
+    }
+    /**
+     * Play background music
+     */
+    private void playBGM()
+    {
+         //bgm = new GreenfootSound("sounds/mainScreen.mp3");
         if(!bgm.isPlaying())
         {
-           bgm.setVolume(30);
+           bgm.setVolume(20);
            bgm.playLoop(); 
         }
-              
-    }   
+    }
     /**
      * Update the money that the plaeyer's earned for every frane
      */
@@ -173,11 +181,5 @@ public class MainScreen extends World
         {
             return 2200;
         }
-    }
-    /**
-     * Get background music of the world
-     */
-    public GreenfootSound getBGM(){
-        return bgm; //returns the background music of the MainScreen
     }
 }

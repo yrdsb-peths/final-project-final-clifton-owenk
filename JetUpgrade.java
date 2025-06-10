@@ -46,7 +46,7 @@ public class JetUpgrade extends World
         //AddReturnButton
         addObject(new ReturnButton(), getWidth() / 2, getHeight() / 2 + 55); 
         
-        
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
     }
     /**
      * Updates the display to show current values of 

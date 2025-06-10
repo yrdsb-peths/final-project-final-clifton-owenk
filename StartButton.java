@@ -47,12 +47,18 @@ public class StartButton extends Actor {
             BasicEnemy.adjust(); //adjust difficulty for basic enemy
             MiniBoss.adjust(); //adjust difficulty for basic enemy
             BossMissile.adjust(); //adjust difficulty for BossMissile
-            GameWorld.victory=false;  //for test
-            if(MainScreen.bgm.isPlaying())
-            {
-                    MainScreen.bgm.stop();
-            }   
+            GameWorld.victory=false;  //make sure reset battle status
+            //stopMainScreenBGM();
             Greenfoot.setWorld(new GameWorld()); // Start the game
+        
+        }
+        
+    }
+    private void stopMainScreenBGM()
+    {
+        if(MainScreen.bgm.isPlaying())
+        {
+            MainScreen.bgm.stop();
         }
     }
 }

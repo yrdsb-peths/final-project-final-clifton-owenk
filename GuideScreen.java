@@ -26,7 +26,8 @@ public class GuideScreen extends World
         super(400, 750, 1);
         updateImage(); // load first guide image
         //add return to main screen button
-        addObject(new ReturnButton(), getWidth() / 2+130, getHeight() / 2-335);
+        addObject(new ReturnButton(), getWidth() / 2+130, getHeight() / 2-320);
+        GameWorld.gamePlay=false; //indicates player is not in GameWorld
     }
     /**
      * Listens for left and right arrow key presses to navigate through guide images.

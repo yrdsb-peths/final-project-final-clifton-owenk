@@ -10,7 +10,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  *  - Remove the CancelButton from the world if on the confirmation popup.
  * 
  * @author Kung, Lin
- * @version 2025/6/9
+ * @version 2025/6/10
  */
 
 public class OkButton extends Actor
@@ -92,15 +92,15 @@ public class OkButton extends Actor
         }
         if(BulletReloadUpgradeButton.pressed && JetUpgrade.allowUpdate())
         {
-            Jet.shootInterval -= 2;
+            Jet.shootInterval=Math.max(10,Jet.shootInterval -= 2);
             GameWorld.money=Math.max(0, GameWorld.money-=50000);
             
             //reset button pressed to false
-            AttackUpgradeButton.pressed = false; 
+            BulletReloadUpgradeButton.pressed = false; 
         }
         if(JetSpeedUpgradeButton.pressed && JetUpgrade.allowUpdate())
         {
-            Jet.baseSpeed +=1;
+            Jet.baseSpeed =Math.min(10,Jet.baseSpeed+=1);
             GameWorld.money = Math.max(0, GameWorld.money-=50000);
             
             //reset button pressed to false
