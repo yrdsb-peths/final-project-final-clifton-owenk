@@ -1,23 +1,38 @@
 import greenfoot.*;
 
 /**
- * StartButton is button on main screen
- * If clicked by mouse then jump to gameworld 
- * It also adjust difficulties for all enimies, each time pressed 
- * either increasing or decreasing value
+ * StartButton is displayed on the main screen.
+ * 
+ * When clicked
+ *    - Plays a sound
+ *    - Adjusts the difficulty for all enemies
+ *    - Switches to the GameWorld
+ * 
+ * Each time it's clicked, it increases or decreases enemy difficulty
+ * based on the current game status.
+ * 
+ * @author Kung, Lin
  * @version 2025/6/5
  */
 public class StartButton extends Actor {
     private GreenfootImage normalImage = new GreenfootImage("start.png");
     private GreenfootImage pressedImage = new GreenfootImage("start1.png");
 
+    /**
+     * Constructs a StartButton with scaled default and pressed images.
+     */
     public StartButton() 
     {
         normalImage.scale(240, 110); //size of button
         pressedImage.scale(250, 350); 
         setImage(normalImage);
     }
-
+    /**
+     * When pressed
+     *   - Changes image for user feedback
+     * When clicked
+     *   - Starts the game.
+     */
     public void act() 
     {
         if (Greenfoot.mousePressed(this)) 
@@ -28,9 +43,9 @@ public class StartButton extends Actor {
         if (Greenfoot.mouseClicked(this)) 
         {
             Greenfoot.playSound("start.mp3"); //play sound when clicked
-            BasicEnemy.adjust(); //adjust dificulty for basic enemy
-            MiniBoss.adjust(); //adjust dificulty for basic enemy
-            BossMissile.adjust(); //adjust dificulty for BossMissile
+            BasicEnemy.adjust(); //adjust difficulty for basic enemy
+            MiniBoss.adjust(); //adjust difficulty for basic enemy
+            BossMissile.adjust(); //adjust difficulty for BossMissile
             Greenfoot.setWorld(new GameWorld()); // Start the game
         }
     }

@@ -1,8 +1,15 @@
 import greenfoot.*;  
 
 /**
- * The Jet class is an object that player is controlling in the game
- * The jet can move up, down, left, and right using the arrow keys.
+ * The Jet class represents the player-controlled aircraft.
+ * 
+ * The jet:
+ *   -Moves using W/A/S/D keys
+ *   -Automatically shoots bullets at a fixed interval
+ *   -Has a health bar displayed below it
+ *   -Triggers a defeat screen when health reaches zero
+ * 
+ * @author Kung, Lin
  * @version 2025/6/8
  */
 public class Jet extends Actor
@@ -26,7 +33,9 @@ public class Jet extends Actor
         
         bar = new HealthBar(baseHealth, 100, 5);//add healthbar, and set maxHealth to 100
     }
-
+     /**
+     * Handles how jet moves, shoots, and health bar updates.
+     */
     public void act()
     {
         moveWithKeys(); 
@@ -35,8 +44,8 @@ public class Jet extends Actor
     }
     
     /**
-     * Checks which arrow keys are being pressed
-     * Jet moves in that direction
+     * Checks which WSAD keys are being pressed
+     * Jet moves accordingly
      */
     public void moveWithKeys()
     {
@@ -66,8 +75,9 @@ public class Jet extends Actor
     }
     
     /**
-    * Automatically shoot bullets every few frames.
-    */
+     * Automatically shoots bullets at shootInteval
+     * Bullets appear above the jet.
+     */
     public void autoShoot()
     {
         if (autoShootTimer == 0) 
@@ -82,17 +92,30 @@ public class Jet extends Actor
             autoShootTimer--; // count down 20 frames
         }
     }
-    
+      /**
+     * Adds the health bar just below the jet.
+     *
+     * @param world the world this Jet is added to
+     */
     public void addedToWorld(World world)
     {
         world.addObject(bar, getX(), getY() + 70); //Add health bar under jet
     }
-    
+    /**
+     * Keeps the health bar aligned with the jet's position.
+     */
     public void updateHealthBarPosition()
     {
         bar.setLocation(getX(), getY() +70);
     }
-    
+    /**
+     * Reduces the jet's health by the specified amount.
+     * If health reaches zero
+     *   -The background music is stopped
+     *   -The Defeat screen is shown.
+     *
+     * @param amount: the amount of damage taken
+     */
     public void takeDamage(int amount)
     {
         bar.loseHealth(amount); // lose health

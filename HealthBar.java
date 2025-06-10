@@ -1,9 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
-* HealthBar shows how much health a player has
-* @version 2025/6/4
-*/
+ * HealthBar represents an object's current health.
+ * The bar is filled with red (background) and green (remaining health),
+ * and it automatically scales based on the current/max health values.
+ * 
+ * Players that use HealthBar,
+ *  -Enemies
+ *  -Boss missiles
+ *  -Jet
+ * 
+ * @author Kung, Lin
+ * @version 2025/6/4
+ */
+
 public class HealthBar extends Actor
 {
     private int maxHealth =100;
@@ -13,8 +23,11 @@ public class HealthBar extends Actor
     private int barHeight = 10;
     
     /**
-     * constructer to customize health bar
-     * depending on what maxHealth is set 
+     * Constructs a HealthBar with custom health, width, and height.
+     *
+     * @param maxHealth: the maximum health value
+     * @param barWidth: the width of the health bar
+     * @param barHeight: the height of the health bar
      */
     public HealthBar(int maxHealth, int barWidth, int barHeight)
     {
@@ -25,8 +38,11 @@ public class HealthBar extends Actor
         updateBar();
     }
     
-    /**
-     * update health bar
+     /**
+     * Updates the appearance of the health bar based on current health.
+     * 
+     * The red portion shows missing health
+     * The green portion shows remaining health.
      */
     public void updateBar()
     {
@@ -40,9 +56,12 @@ public class HealthBar extends Actor
         
         setImage(image);
     }
-    /**
-     * Reduce health
-     * update bar
+     /**
+     * Reduces the current health by a specified amount and updates the bar.
+     * 
+     * Minimum value of health is zero
+     *
+     * @param amount: the amount of health to subtract
      */
     public void loseHealth(int amount)
     {
@@ -53,7 +72,11 @@ public class HealthBar extends Actor
         }
         updateBar();
     }
-    
+    /**
+     * Returns the current health value.
+     *
+     * @return: current health
+     */
     public int getHealth()
     {
         return currentHealth;

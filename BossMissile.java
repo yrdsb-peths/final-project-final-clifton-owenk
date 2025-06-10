@@ -1,10 +1,23 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * used by miniBoss damage players jet
- * It moves downward, damages jet when contact, and can be destoryed by bullet
+ * BossMissile is launched by the MiniBoos to damage the player's jet.
+ * 
+ * The missile:
+ *   -Moves downward
+ *   -Deals damage to the Jet on contact
+ *   -Can be destroyed by bullets
+ *   -Displays a health bar
+ * 
+ * Following factors adjusted based on player's rank.
+ *  -Speed
+ *  -Health
+ *  -Damage power
+ * 
+ * @author Kung, Lin
  * @version 2025/6/5
  */
+
 public class BossMissile extends Actor
 {
     //public int speed = 1; // missile speed
@@ -12,20 +25,34 @@ public class BossMissile extends Actor
     
     private static int baseSpeed = 1;
     private static int baseHealth = 200;
-    public static int damagePower=50; //public access for testing, change back to privae after testing
+    private static int damagePower=50; 
     
+    /**
+     * Constructs a BossMissile with its image, size, and health bar.
+     */
     public BossMissile()
     {
         setImage("boss_missile.png"); 
         getImage().scale(30,60); //set size
         bar = new HealthBar(baseHealth, 40, 5); // 200 health, health bar size 40x5
     }
-    
+    /**
+     * Places healthbar above the missile
+     *
+     * @param world the world the missile was added to
+     */
     public void addedToWorld(World world)
     {
         getWorld().addObject(bar, getX(), getY()-35); //place bar above missile
     }
-
+    /**
+     * Moves the missile downward
+     * Updates the health bar,
+     * Checks for collision with Jet or bullets
+     * Removes itself 
+     *   -when hit 
+     *   -or when it reaches the screen edge.
+     */
     public void act()
     {
         if(getWorld() ==null)
@@ -71,7 +98,9 @@ public class BossMissile extends Actor
             return;
         }
     }
-    
+    /**
+     * Updates the position of the missile's health bar so it follows the missile.
+     */
     public void updateHealthBarPosition()
     {
         if (bar != null && getWorld() != null) 
@@ -79,7 +108,14 @@ public class BossMissile extends Actor
             bar.setLocation(getX(), getY() -35); //follow bossMissile above
         }
     }
-    
+    /**
+     * Reduces the missile's health by a given amount.
+     * If health reaches 0
+     *   -Spawns an explosion
+     *   -Removes itself.
+     *
+     * @param amount the amount of damage to take
+     */
     public void takeDamage(int amount)
     {
         bar.loseHealth(amount);
@@ -92,7 +128,9 @@ public class BossMissile extends Actor
             return;
         }
     }
-    
+    /**
+     * Safely removes the missile and its health bar from the world.
+     */
     public void removeSelf()
     {
         if(getWorld() != null)
@@ -104,9 +142,14 @@ public class BossMissile extends Actor
             getWorld().removeObject(this); //only run if still in world
         }
     }
-    
     /**
-     * Update difficulty when rank points change
+     * Adjusts missile power based on previous battle result.
+     *  -speed
+     *  -health
+     *  -damage
+     * 
+     * If the player won, difficulty increases.
+     * If the player lost, difficulty decreases (but never below minimum thresholds).
      */
     public static void adjust() 
     {

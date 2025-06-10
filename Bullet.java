@@ -1,22 +1,46 @@
 import greenfoot.*;
 
 /**
- * Bullet class for the jet's automatic shooting.
- * The bullet travels upward and disappears when off-screen.
+ * Bullet is fired by the player's jet and travels upward.
+ *
+ * It deals damage to enemies such as 
+ *  -BasicEnemy
+ *  -MiniBoss
+ * 
+ * It disappears after 
+ *  -hitting an enemy 
+ *  -or reaching the top of the screen.
+ * 
+ * @author Kung, Lin
  * @version 2025/6/8
  */
+
 public class Bullet extends Actor
 {
     private int speed = 10;
+    
+    //public static, will be used in JetUpgrade
     public static int baseDamage = 100; 
 
+    /**
+     * Constructs a Bullet with its image scaled to fit the game.
+     */
     public Bullet() 
     {
         GreenfootImage image = new GreenfootImage("jet_bullet.png"); 
         image.scale(20, 40);
         setImage(image);
     }
-
+    /**
+     * Moves the bullet upward
+     * 
+     * Checks for collisions with the following
+     * ,deals wih damage and removes the bullet
+     *  -BascEnemy
+     *  -MiniBoss
+     *  
+     * Removes the bullet if it reaches the top of the screen
+     */
     public void act()
     {
         setLocation(getX(), getY() - speed);

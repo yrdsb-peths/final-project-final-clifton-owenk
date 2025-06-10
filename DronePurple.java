@@ -1,22 +1,27 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class DronePurple here.
+ * DronePurple is a type of BasicEnemy that appears with a purple color.
+ * It inherits movement and behavior from the BasicEnemy class.
  * 
- * @author (your name) 
+ * This class sets its image to "drone_purple.png" and adjusts its size.
+ * 
+ * @author Kung, Lin
  * @version 2025/6/4
  */
 public class DronePurple extends BasicEnemy
 {
     /**
-     * Act - do whatever the DronePurple wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
+     * Constructor: Initializes the drone with its purple sprite and scales it.
      */
     public DronePurple()
     {
         setImage("drone_purple.png");
         getImage().scale(60,60); // Adjest drone size
     }
+    /**
+     *  Inherits movement and behavior from BasicEnemy.
+     */
     public void act()
     {
         super.act();

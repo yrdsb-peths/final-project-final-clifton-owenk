@@ -1,8 +1,14 @@
 import greenfoot.*;
 
 /**
- * MiniBoss is a stronger enemy that moves down to 1/3 of the screen,
- * then moves left and right horizontally.
+ * MiniBoss is a stronger enemy
+ *  -First moves down to 1/3 of the screen,
+ *  -Then moves left and right
+ *  -It periodically fires missiles
+ *  -Has a large health bar
+ *  -Triggers the victory screen when defeated.
+ * 
+ * @author Kung, Lin
  * @version 2025/6/5
  */
 public class MiniBoss extends Actor 
@@ -18,6 +24,9 @@ public class MiniBoss extends Actor
     public static int baseHealth = 2000;
     public static int spawnDelay = 180;
     
+    /**
+     * Constructor: initializes image, size, and health bar.
+     */
     public MiniBoss()
     {
         setImage("miniBoss.png");
@@ -25,21 +34,25 @@ public class MiniBoss extends Actor
 
         bar = new HealthBar(baseHealth, 200, 5); // Boss health set to 2000
     }
-    
+    /**
+     * Place the health bar above it.
+     */
     public void addedToWorld(World world)
     {
         world.addObject(bar, getX(), getY() -120); // put health bar above boss
         bar.updateBar();
     }
-    
+    /**
+     * Updates the health bar's position to stay above the boss.
+     */
     public void updateHealthBarPosition()
     {
         bar.setLocation(getX(), getY() -120); // healthbar always move with miniBoss
     }
     
     /**
-     * move downward until 1/3 of the screen height,
-     * then move left and right.
+     * Move downward until 1/3 of the screen height
+     * Then move left and right
      */
     public void act() 
     {
@@ -62,8 +75,7 @@ public class MiniBoss extends Actor
     }
 
     /**
-     * Move the mini-boss down 
-     * until it reach 1/3 of the screen height.
+     * Moves the boss downward until it reaches 1/3 of the screen height.
      */
     public void moveDown() 
     {
@@ -74,9 +86,9 @@ public class MiniBoss extends Actor
         }
     }
 
-    /**
+     /**
      * Moves the mini-boss left and right.
-     *turns around when touches the edge of the screen.
+     * Turns around when it touches the edge of the screen.
      */
     public void moveSideways() {
         setLocation(getX() + baseXSpeed, getY());
@@ -87,7 +99,10 @@ public class MiniBoss extends Actor
             baseXSpeed = -baseXSpeed; //change direction
         }
     }
-    
+    /**
+     * Applies damage to the boss and checks for if player wins the game
+     * @param amount The amount of damage to apply
+     */
     public void takeDamage(int amount)
     {
         bar.loseHealth(amount);
@@ -108,7 +123,9 @@ public class MiniBoss extends Actor
             
         }
     }
-    
+    /**
+     * Fires two missiles from the left and right sides of the boss.
+     */
     public void fireMissiles()
     {
         if(getWorld() == null)
@@ -124,14 +141,16 @@ public class MiniBoss extends Actor
         getWorld().addObject(new BossMissile(), xRight, y);
         
     }
-    
+    /**
+     * Getter for background music
+     */
     public GreenfootSound getBGM()
     {
         return bgm;
     }
     
-    /**
-     * Update difficulty when rank points change
+     /**
+     * Adjusts MiniBoss difficulty based on rankPoints.
      */
     public static void adjust() 
     {

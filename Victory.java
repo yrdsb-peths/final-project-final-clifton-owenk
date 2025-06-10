@@ -1,7 +1,15 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * show screen when miniBoss defeated
+ * The Victory class displays a screen when the player defeats the MiniBoss.
+ *
+ * Shows a victory banner
+ * Plays a sound effect
+ * Awards 100 rank points
+ * Updates GameWorld.victory to true
+ * Displays ReturnButton to go back to the MainScreen
+ * 
+ * @author Kung, Lin
  * @version 2025/6/4
  */
 public class Victory extends World
@@ -10,6 +18,14 @@ public class Victory extends World
     private boolean bannerAdded = false;
     private boolean buttonAdded = false;
     
+    /**
+     * Constructs the Victory screen.
+     * 
+     * Sets the background
+     * Plays the victory sound
+     * Adds 100 rank points
+     * Marks the game as won by GameWorld.victory=true
+     */
     public Victory()
     {    
         super(400, 750, 1); 
@@ -18,7 +34,10 @@ public class Victory extends World
         GameWorld.rankPoints += 100; // add 100 points when this screen shown
         GameWorld.victory = true; //if is true, can increase difficulty
     }
-    
+    /**
+     * Displays the victory banner after a short delay
+     * Adds the ReturnButton to MainScreen after a longer delay.
+     */
     public void act()
     {
         frameCounter++;

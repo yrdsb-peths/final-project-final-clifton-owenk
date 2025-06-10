@@ -1,10 +1,17 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
-  * 
-  * @author Kung, Lin
-  * @version 2025/6/8
-*/
+ * OkButton handles confirming an upgrade.
+ * When clicked
+ *   -Checks which upgrade button was pressed,
+ *   -Applies the corresponding upgrade
+ *   -Deducts money.
+ *   -Removes the popup
+ *  - Remove the CancelButton from the world if on the confirmation popup.
+ * 
+ * @author Kung, Lin
+ * @version 2025/6/9
+ */
 
 public class OkButton extends Actor
 {
@@ -15,6 +22,10 @@ public class OkButton extends Actor
     
     public static boolean pressed = false;
     
+     /**
+     * Constructor to set image and link to popup screen.
+     * @param popScreen: The popup screen this button is related to
+     */
     public OkButton(Actor popScreen)
     {
         //resize image
@@ -25,12 +36,17 @@ public class OkButton extends Actor
         
         this.popScreen=popScreen;
     }
+    /**
+     * On click
+     *   -Performs upgrade
+     *   -Removes popup, cancel button if there’s one and itself from the screen
+     */
     public void act()
     {
         if(Greenfoot.mousePressed(this)) //when clicked
         {
             setImage(pressedImage);
-            Greenfoot.playSound("sounds/buttonPress2");
+            Greenfoot.playSound("sounds/buttonPress2.mp3");
         }
         if(Greenfoot.mouseClicked(this)) // mouse release
         {
@@ -44,10 +60,18 @@ public class OkButton extends Actor
             getWorld().removeObject(this);  
         }
     }
+    /**
+     * If there’s a CancelButton on the popup
+     * @param cancelButton The CancelButton to remove on confirm
+     */
     public void add(CancelButton cancelButton)
     {
         this.cancelButton=cancelButton;
     }
+    /**
+     * Applies the selected upgrade based on which upgrade button was pressed.
+     * Deducts money and resets the pressed state to false for that button.
+     */
     private void upgrade()
     {
         if(HealthUpgradeButton.pressed && JetUpgrade.allowUpdate() )

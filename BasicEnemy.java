@@ -1,34 +1,57 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * BasicEnemy is a drone that moves downward.
- * It damages the Jet on contact, drops a coin when destroyed,
- * and disappears when health reaches 0 or off-screen.
- * @version 2025/6/8
+ * BasicEnemy represents a simple drone enemy that moves downward.
+ * 
+ * Damages the Jet on contact
+ * Drops coin and creates an explosion when destroyed,
+ * Disappears when it reaches the bottom of the screen. 
+ * Has a health bar displayed above it.
+ *
+ * Its difficulty (spawn rate, health, damage) depends on player’s rank
+ * 
+ * @autho: Kung, Lin
+ * @version 2025/6/4
  */
 public class BasicEnemy extends Actor
 {  
-    public static int spawnDelay = 60;
-    public static int baseHealth = 100;
-    public static int baseDamage = 50;
+    public static int spawnDelay = 60; //Delay between spawns, in frames
+    public static int baseHealth = 100; //Base health for all BasicEnemy instances
+    public static int baseDamage = 50; //Base damage dealt to the Jet on collision
     
     private int speed = 2;
     private int health;
     private int damage;
     private HealthBar bar;
-
+    
+    /**
+     * Constructs a BasicEnemy with default base health and damage.
+     * Creates health bar to display above the enemy.
+     */
     public BasicEnemy()
     {
         health = baseHealth;
         damage = baseDamage;
         bar = new HealthBar(baseHealth, 40, 5); // 100 HP, bar width 40x5
     }
-
+    /**
+     * Adds enemy’s health bar slightly above its head.
+     *
+     * @param world the world the enemy is being added to
+     */
     public void addedToWorld(World world)
     {
         getWorld().addObject(bar, getX(), getY() - 40); // bar above drone
     }
-
+    /**
+     * Moves downward
+     * Updates the health bar position
+     * Deals wtih:
+     *  Collisions with the Jet
+     *  Off-screen removal
+     *  Hits from bullets
+     * 
+     */
     public void act()
     {
         if (getWorld() == null) 
@@ -64,9 +87,11 @@ public class BasicEnemy extends Actor
             }
         }
     }
-
     /**
-     * Check for collision with Jet and deal damage
+     * Checks for a collision with the Jet.
+     * Deals damage to the Jet if touched
+     *     -spawns an explosion
+     *     -removes itself.
      */
     public void checkCollisionWithJet()
     {
@@ -84,9 +109,8 @@ public class BasicEnemy extends Actor
             removeSelf();
         }
     }
-
     /**
-     * Remove enemy if off the screen
+     * Removes the enemy if it reaches the edge of the screen.
      */
     public void checkOffScreen()
     {
@@ -96,8 +120,14 @@ public class BasicEnemy extends Actor
         }
     }
 
-    /**
-     * Reduce health and remove if zero
+     /**
+     * Reduces the enemy's health by the specified amount.
+     * If health drops to 0 or below,
+     *    -Drops a coin
+     *    -Spawns an explosion
+     *    -Removes itself.
+     *
+     * @param damage: the amount of damage taken
      */
     public void takeDamage(int damage)
     {
@@ -117,9 +147,8 @@ public class BasicEnemy extends Actor
             return; 
         }
     }
-
     /**
-     * Safely remove enemy and health bar
+     * Safely removes the enemy and its health bar from the world.
      */
     public void removeSelf()
     {
@@ -132,9 +161,15 @@ public class BasicEnemy extends Actor
             getWorld().removeObject(this);
         }
     }
-    
     /**
-     * Update difficulty when rank points change
+     * Adjusts the following difficulty level of the base enemy 
+     * based on the outcome of the previous battle.
+     *  -spawn delay
+     *  -base health
+     *  -base damage
+     * 
+     * If GameWorld.victory=true: makes enemies harder.
+     * If GameWorld.victory=false: makes enemies easier, with minimum limits.
      */
     public static void adjust() 
     {
@@ -151,6 +186,11 @@ public class BasicEnemy extends Actor
             baseDamage = Math.max(50, baseDamage -=50);
         }
     }
+      /**
+     * Gets the current spawn delay value.
+     * 
+     * @return the number of frames between enemy spawns
+     */
     public static int getSpawnDelay()
     {
         return spawnDelay;

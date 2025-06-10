@@ -1,11 +1,19 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Defeat is a screen that shows up when the player's health bar reaches zero
- * This screen ends the game
- * shows defeat
+ * The Defeat class represents the Game Over screen 
+ * when the player’s health reaches zero.
+ *  
+ * Feature:
+ *  -Displays a Defeat Banner and Home return button.
+ *  -Plays defeat sound upon creation.
+ *  -Reduces the player’s rank points.
+ *  -Signal to the GameWorld that the player has lost.  (victory==false)
+ *  
+ * @author: Kung, Lin
  * @version 2025/6/4
  */
+
 public class Defeat extends World
 {
     private int timer = 0; //delay showing defeat banner timer
@@ -13,6 +21,16 @@ public class Defeat extends World
     private boolean wordShown = false;
     private boolean buttonAdded = false; //checks if the button is added
     
+    /**
+     *Constructor for objects of class Defeat.
+     * 
+     * Initializes the defeat screen byy:
+     * Setting background</li>
+     * Playing defeat sound</li>
+     * Reducing player rank</li>
+     * Marking the defeat condition in GameWorld
+     * 
+     */
     public Defeat()
     {    
         super(400, 750, 1);  // Same size as game screen
@@ -31,7 +49,15 @@ public class Defeat extends World
         
         GameWorld.victory = false; //if is false, can decrease difficulty
     }
-    
+         
+    /**
+     * Act - Called repeatedly to manage screen display timing.
+     * 
+     * Showing the defeat banner after 30 frames
+     * Displaying defeat text after 45 frames
+     * Adding return button after 120 frames
+     *
+     */ 
     public void act()
     {
         timer++;

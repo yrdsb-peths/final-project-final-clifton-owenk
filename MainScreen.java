@@ -1,10 +1,19 @@
 import greenfoot.*;
 
 /**
- * MainScreen is the screen is a place to 
- * start game
- * guide
- * upgrade
+ * The MainScreen class is the title screen where the player can:
+ *  -Start the game 
+ *  -Access the jet upgrade screen
+ *  -Open the guide/tutorial screen
+ * 
+ * It also displays the player's 
+ *  -Current money
+ *  -Rank badge
+ *  -Progress bar for rank points.
+ * 
+ * The layout and dimensions are optimized for vertical mobile screens.
+ * 
+ * @author Kung, Lin
  * @version 2025/6/4
  */
 public class MainScreen extends World
@@ -13,6 +22,13 @@ public class MainScreen extends World
     private RankBar rankBar; //bar showing rank points
     private GreenfootSound bgm;
     
+    /**
+     * Constructs the main title screen.
+     * 
+     * Initializes the background
+     * Adds UI buttons (start, upgrade, guide), 
+     * Shows the player's current rank and progress.
+     */
     public MainScreen() 
     {
         super(400, 750, 1); // size of main screen
@@ -27,6 +43,8 @@ public class MainScreen extends World
         addObject(new UpgradeButton(), getWidth()-140, 65);
         //add to guideScreen button
         addObject(new GuideButton(), getWidth() - 58, 65); 
+        //add rankGuideButton
+        addObject(new RankGuideButton(), getWidth()-200, 430);
 
         
         //show the rank badge
@@ -37,15 +55,18 @@ public class MainScreen extends World
         rankBar = new RankBar(points, maxPoints, 200, 20);
         addObject(rankBar, getWidth()/2, 470); //add bar below text
     }
-
+    /**
+     * Update the money that the plaeyer's earned for every frane
+     */
     public void act() 
     {
         showText("" + GameWorld.money, 170, 120); //show current money
         
-        bgm = new GreenfootSound("sounds/mainScreen.mp3");
-        bgm.playLoop();
     }
-    
+    /**
+     * Draws the correct rank badge and rank label based on the player's current rank points.
+     * Displays rank progress as text, e.g. "Gold 320/500 pts".
+     */
     private void drawRankBadge()
     {
         int points = GameWorld.rankPoints;
@@ -104,8 +125,14 @@ public class MainScreen extends World
         showText(labelText, getWidth()/2, y + 220); 
      
     }
-    
-    //for rank progress bar
+    /**
+     * Returns the maximum rank point threshold for the current level.
+     * 
+     * Used to determine how much progress is needed to reach the next rank.
+     * 
+     * @param points the current rank points
+     * @return the maximum points for the current rank tier
+     */
     private int getMaxPoints(int points)
     {
         if(points <200)
